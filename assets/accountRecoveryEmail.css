@@ -1,0 +1,170 @@
+@layer reset {
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    *::after,
+    *::before {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+    img,
+    picture,
+    svg,
+    canvas {
+      max-inline-size: 100%;
+      block-size: auto;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  }
+  :root {
+    --grey-dark: #716e6e;
+    --grey-light: #aeaeae;
+    --green: #0bde46;
+    --blue: #0d79dd;
+    --blue-dark: #052054;
+    --blue-light: #09abdd;
+    --font-family-body: "Lato", sans-serif;
+    --font-family-header: "Work Sans", sans-serif;
+    --font-weight-thin: 100;
+    --font-weight-extra-light: 200;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extra-bold: 700;
+  }
+
+  body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    @media screen and (max-width:1030px) {
+        min-height: 50vh;
+        padding: 1rem;
+    }
+    @media screen and (max-width:550px) {
+        flex-direction: column;
+    }
+
+  }
+  .logo{
+    position: absolute;
+    top: 70px;
+    left: 70px;
+    @media screen and (max-width:830px) {
+        top: 30px;
+        left: 30px;
+    }
+    @media screen and (max-width:550px) {
+        position: static;
+    }
+  }
+
+  form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1{
+        font-family: var(--font-family-header);
+        font-weight: var(--font-weight-semi-bold);
+        color: var(--blue);
+        margin-bottom: 0.5rem;
+    }
+    p{
+        font-family: var(--font-family-header);
+        font-size: 1.5rem;
+        font-weight: var(--font-weight-medium);
+        margin-bottom: 2rem;
+        text-align: center;
+        @media screen and (max-width:550px) {
+            margin-bottom: 1rem;
+        }
+    }
+    .form_field{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2.5rem;
+        input{
+            width: 600px;
+            height: 50px;
+            border-radius: 1rem;
+            border: 2px solid #000;
+            padding-left: 1rem;
+            font-family: var(--font-family-body);
+            font-size: 1.3em;
+            @media screen and (max-width:550px) {
+                width: 400px;
+                height: 40px;
+                border-radius: 0.5em;
+            }
+            @media screen and (max-width:450px) {
+                width: 360px;
+                height: 40px;
+                border-radius: 0.5em;
+            }
+            @media screen and (max-width:400px) {
+                width: 350px;
+            }
+        }
+        label{
+            font-family: var(--font-family-header);
+            font-size: 1.5rem;
+            font-weight: var(--font-weight-medium);
+            margin-bottom: 0.5rem;
+        }
+    }
+    button{
+        width: 214px;
+        height: 45px;
+        position: relative;
+        font-size: 1.5em;
+        font-family: var(--font-family-header);
+        font-weight: var(--font-weight-semi-bold);
+        color: #fff;
+        background-color: var(--green);
+        border: none;
+        outline: none;
+        align-self: flex-end;
+        img{
+            position: absolute;
+            right: 1em;
+            top: 0.6em;
+            @media screen and (max-width:550px) {
+                right: 0.3em;
+                top: 0.4em;
+            }
+        }
+        &:hover{
+            opacity: 0.8;
+            cursor: pointer;
+        }
+        @media screen and (max-width:550px) {
+            width: 160px;
+            height: 35px;
+        }
+    
+    }
+  }
