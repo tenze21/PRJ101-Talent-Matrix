@@ -148,3 +148,71 @@ function onDelete(td){
         resetForm();
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.payment_record_form');
+    const tableBody = document.querySelector('.record_table tbody');
+  
+    form.addEventListener('submit', async function(event) {
+      event.preventDefault();
+  
+      const projectId = document.getElementById('projectid').value;
+      const clientId = document.getElementById('clientid').value;
+      const amount = document.getElementById('amount').value;
+      const status = document.getElementById('status').value;
+  
+      const response = await fetch('http://localhost:5000/api/payment_records', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ projectId, clientId, amount, status }),
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        addToTable(result);
+        form.reset();
+      } else {
+        console.error('Error:', result.message);
+      }
+    });
+  
+    async function fetchRecords() {
+      const response = await fetch('http://localhost:5000/api/payment_records');
+      const records = await response.json();
+      records.forEach(record => addToTable(record));
+    }
+  
+    function addToTable(record) {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${record._id}</td>
+        <td>${record.projectId}</td>
+        <td>${record.clientId}</td>
+        <td>${record.amount}</td>
+        <td>${record.status}</td>
+        <td><button data-id="${record._id}" class="delete-btn">Delete</button></td>
+      `;
+      tableBody.appendChild(row);
+    }
+  
+    tableBody.addEventListener('click', async function(event) {
+      if (event.target.classList.contains('delete-btn')) {
+        const id = event.target.dataset.id;
+  
+        const response = await fetch(`http://localhost:5000/api/payment_records/${id}`, {
+          method: 'DELETE',
+        });
+  
+        if (response.ok) {
+          event.target.closest('tr').remove();
+        } else {
+          console.error('Error deleting record');
+        }
+      }
+    });
+  
+    fetchRecords();
+  });
+  
