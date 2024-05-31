@@ -117,3 +117,40 @@ const options = [
     searchForm.submit();
     searchInput.value= selectedOption;
   }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    fetchTalents();
+  });
+  
+  async function fetchTalents() {
+    try {
+      const response = await fetch('/api/talents');
+      const talents = await response.json();
+      populateTalents(talents);
+    } catch (error) {
+      console.error('Error fetching talents:', error);
+    }
+  }
+  
+  function populateTalents(talents) {
+    const template = document.getElementById('talent-card-template');
+    const container = document.getElementById('talent-cards-container');
+  
+    talents.forEach(talent => {
+      const clone = template.content.cloneNode(true);
+      clone.querySelector('.talent_image img').src = talent.image || 'assets/images/default_profile.svg';
+      clone.querySelector('.username').textContent = talent.fullname;
+      clone.querySelector('.dzongkhag').textContent = talent.location.city;
+      clone.querySelector('.country').textContent = talent.location.country;
+      
+      const skillsList = clone.querySelector('.skills-list');
+      talent.skills.forEach(skill => {
+        const li = document.createElement('li');
+        li.textContent = skill;
+        skillsList.appendChild(li);
+      });
+  
+      container.appendChild(clone);
+    });
+  }
+  
