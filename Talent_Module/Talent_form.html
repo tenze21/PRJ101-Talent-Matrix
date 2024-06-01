@@ -183,7 +183,7 @@
                         </div>
                         <h4>Through</h4>
                         <div class="till">
-                            <input type="text" placeholder="From" onfocus="(this.type='date')">
+                            <input type="text" placeholder="To" id="date_to" onfocus="(this.type='date')">
                         </div>
                     </div>
                 </div>
@@ -231,6 +231,18 @@
                 mytext.style.color="Black";
             }
         })
+
+        document.getElementById('checkbox').addEventListener('change', function() {
+        const dateInput = document.getElementById('date_to');
+        if (this.checked) {
+            const currentDate = new Date().toISOString().split('T')[0];
+            dateInput.value = currentDate;
+            dateInput.type = 'date'; // Ensure the input type is 'date'
+        } else {
+            dateInput.value = '';
+            dateInput.type = 'text'; // Optionally revert the input type to 'text'
+        }
+});
     </script>
 </body>
 </html>

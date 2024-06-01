@@ -78,12 +78,14 @@
     .nav_list{
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: clamp(1rem, 5vw, 10rem);
       transform: translateX(-15rem);
       .nav_item{
         list-style: none;
         font-family: var(--font-family-header);
-        font-size: 1.25rem;
+        font-size: 1.5rem;
+        font-weight: var(--font-weight-medium);
         cursor: pointer;
         &:hover{
           color: var(--green);
@@ -91,6 +93,9 @@
         a{
           text-decoration: none;
           color: #000;
+          &[aria-current='page']{
+            color: var(--green);
+          }
           &:hover{
             color: var(--green);
           }
@@ -99,6 +104,9 @@
       .projects_nav{
         display: block;
         position: relative;
+        @media screen and (max-width: 830px) {
+          font-size: 1rem;
+        }
         &:hover .sub_nav_list{
           display: flex;
           width: max-content;
@@ -139,6 +147,7 @@
       inset: 0;
       translate: 200vw 0;
       transition: translate 0.5s ease-in-out;
+      z-index: 10;
       .nav_list{
         flex-direction: column;
         justify-content: flex-start;
@@ -262,6 +271,10 @@
       top: 5.6rem;
       right: 2.2rem;
       width: 300px;
+      z-index: 10;
+      #talent_name{
+        font-family: var(--font-family-header);
+      }
       &::before{
         content: "";
         width: 30px;
