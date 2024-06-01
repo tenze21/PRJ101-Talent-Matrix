@@ -145,16 +145,31 @@
         <button class="hire_btn">Hire</button>
         <!-- confirmation modal start -->
         <dialog class="confirmation_modal">
-          <div>
-            <p>
-              A hire request will be sent to the talent with the details of your
-              project.
-            </p>
-            <div class="btns">
-              <button class="cancel_btn">Cancel</button>
-              <button class="confirm_btn">Confirm</button>
-            </div>
-          </div>
+          <form action="#" id="project_selection_form">
+              <p>
+                A hire request will be sent to the talent with the details of your
+                project.
+              </p>
+              <fieldset>
+                <legend>Please Select a project</legend>
+                <div class="checkbox_field">
+                  <input type="radio" id="project1" name="project" required>
+                  <label for="project1">Project Title</label>
+                </div>
+                <div class="checkbox_field">
+                  <input type="radio" id="project2" name="project">
+                  <label for="project2">Project Title</label>
+                </div>
+                <div class="checkbox_field">
+                  <input type="radio" id="project3" name="project">
+                  <label for="project3">Project Title</label>
+                </div>
+              </fieldset>
+              <div class="btns">
+                <button class="cancel_btn">Cancel</button>
+                <button class="confirm_btn">Confirm</button>
+              </div>
+          </form>
         </dialog>
         <!-- confirmation modal end -->
       </div>
@@ -214,7 +229,7 @@
         </div>
         <!-- review modal start -->
         <dialog class="review_modal">
-          <form action="#" method="modal">
+          <form action="#" method="modal" id="review_form">
             <section class="rating_wrapper" aria-labelledby="rating_header">
               <fieldset>
                 <legend>Rating(<i class="bx bxs-star"></i>)</legend>
@@ -227,7 +242,7 @@
                       value="1"
                       required
                     />
-                    <label for="one">1</label>
+                    <label for="one" class="rating_label">1</label>
                   </div>
                   <div class="radio_field">
                     <input type="radio" name="rating" id="two" value="2" />
@@ -235,15 +250,15 @@
                   </div>
                   <div class="radio_field">
                     <input type="radio" name="rating" id="three" value="3" />
-                    <label for="three">3</label>
+                    <label for="three" class="rating_label">3</label>
                   </div>
                   <div class="radio_field">
                     <input type="radio" name="rating" id="four" value="4" />
-                    <label for="four">4</label>
+                    <label for="four" class="rating_label">4</label>
                   </div>
                   <div class="radio_field">
                     <input type="radio" name="rating" id="five" value="5" />
-                    <label for="five">5</label>
+                    <label for="five" class="rating_label">5</label>
                   </div>
                 </div>
               </fieldset>
