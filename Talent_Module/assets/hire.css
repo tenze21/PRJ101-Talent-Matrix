@@ -158,28 +158,56 @@ p{
     background-color: var(--green);
 }
 .no_hire{
+    width: 900px;
+    height: 500px;
+    background-image: linear-gradient(to top, rgb(20 189 243 /0.3), rgb(20 189 243 /0.3)), url(images/no_hires.jpeg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border-radius: 20px;
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
-  }
-  .no_request{
-      width: 50%;
-      height: 570px;
-      font-family: var(--font-family-body);
-      font-size: 40px;
-      font-weight: var(--font-weight-medium);
+    margin-inline: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    @media screen and (max-width: 1030px) {
+      width: 700px;
+    }
+    @media screen and (max-width: 830px) {
+      width: 600px;
+      height: 350px;
+    }
+    @media screen and (max-width: 830px) {
+      width: 600px;
+      height: 350px;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+    @media screen and (max-width: 550px) {
+      max-width: 400px;
+      height: 200px;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    @media screen and (max-width: 430px) {
+      max-width: 350px;
+    }
+    h5 {
       color: var(--grey-dark);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-image: linear-gradient(to top, rgb(20 189 243 /0.3), rgb(20 189 243 /0.3)), url(images/no_hires.jpeg);
-      background-repeat: no-repeat;
-      border-radius: 8px;
-      @media screen and (max-width:550px) {
-        width: 350px;
-        height: 250px;
+      font-family: var(--font-family-header);
+      font-weight: var(--font-weight-medium);
+      font-size: 3rem;
+      @media screen and (max-width: 1030px) {
+        font-size: 2rem;
       }
+      @media screen and (max-width: 550px) {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+    }
   }
+
 @media (max-width:530px){
     .hire{
         margin: 4%;

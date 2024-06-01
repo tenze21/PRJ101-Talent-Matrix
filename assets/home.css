@@ -732,10 +732,12 @@ body{
       gap: 15px;
       li {
         width: 300px;
+        height: 250px;
         list-style: none;
         border: 2px solid var(--grey-dark);
         padding: 1.5rem;
         border-radius: 8px;
+        position: relative;
         box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
         p {
           font-family: var(--font-family-body);
@@ -751,6 +753,8 @@ body{
           align-items: center;
           gap: 1rem;
           margin-top: 1rem;
+          position: absolute;
+          bottom: 1rem;
           img {
             width: 30px;
             height: 30px;

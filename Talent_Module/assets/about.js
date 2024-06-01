@@ -6,7 +6,7 @@ const savebutton = document.getElementById("saveg");
 
 function editAbout() {
   // Set the current email value in the modal input field
-  document.getElementById("newAbt").value = abtValue.textContent;
+  document.getElementById("newAbt").value = abtValue.textContent.trim();
   abtModal.style.display = "block";
 }
 

@@ -185,15 +185,8 @@ h3 img{
     margin-top: 1.5rem;
 }
 .detail-box .email p{
-    /* margin-left: 32%; */
     font-size: 1.3rem;
     font-family: var(--font-family-body);
-    /* @media screen and (max-width: 830px) {
-        margin-left: 27%;
-    }
-    @media screen and (max-width: 770px) {
-        margin-left: 21%;
-    } */
 }
 .skills{
     margin-top: 20px;
@@ -413,6 +406,7 @@ input[type="text"]{
     height: max-content;
     border-radius: 8px;
     padding: 10px;
+    font-family: var(--font-family-header);
 }
 
 .row{
@@ -561,9 +555,11 @@ input::placeholder{
     transition: transform 0.3s linear;
   }
   textarea{
-    width: 400px;
+    width: 450px;
     border-radius: 8px;
     padding: 5px;
+    font-family: var(--font-family-body);
+    border: 2px solid #000;
     @media screen and (max-width:550px) {
         width: 255px;
     }
@@ -599,14 +595,24 @@ input::placeholder{
     padding: 5px;
     border-radius: 4px;
     margin-bottom: 5%;
+    font-family: var(--font-family-body);
+    height: 40px;
+    border: 2px solid #000;
    }
    h2{
     font-family: var(--font-family-header);
     font-size: 20px;
     font-weight: var(--font-weight-semi-bold);
    }
+   h5{
+    font-family: var(--font-family-header);
+    font-size: 1.1rem;
+   }
    @media screen and (max-width:550px) {
     width: 300px;
+   }
+   p{
+    font-family: var(--font-family-body);
    }
   }
   
