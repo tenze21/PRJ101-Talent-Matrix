@@ -26,7 +26,7 @@ form.addEventListener("submit", (e) => {
       phone_number: phoneNumberEl.value,
       password: passwordEl.value,
       portfolio_link: portfolioEl.value,
-role:"talent"      
+      role: "talent",
     };
     // Perform the fetch request for form data posting
     fetch("/user/create_user", {
@@ -38,7 +38,8 @@ role:"talent"
     })
       .then((res) => {
         if (res.status === 201) {
-          window.open("/views/talent/Talent_form.html");
+          // window.open("/views/talent/Talent_form.html");
+          window.location.href = `/views/talent/Talent_form.html?email=${encodeURIComponent(emailEl.value)}`;
         }
       })
       .catch((e) => console.error("Error:", e));
