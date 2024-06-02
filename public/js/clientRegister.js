@@ -26,12 +26,12 @@ form.addEventListener("submit", (e) => {
     isConfirmPasswordValid;
   if (isFormValid) {
     let data={
-      name:nameEl.value,
+      fullname:nameEl.value,
       email: emailEl.value,
-      phoneNumber:phoneNumberEl.value,
+      phone_number:phoneNumberEl.value,
       dzongkhag:dzongkhagEl.value,
       region:regionEl.value,
-      organization:organizationEl.value,
+      organisation:organizationEl.value,
       password:passwordEl.value,
     }
     fetch('/', {

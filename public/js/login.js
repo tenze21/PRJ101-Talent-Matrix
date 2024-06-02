@@ -16,15 +16,12 @@ showHidePassword.addEventListener('click', function(){
 const form =document.querySelector(".login-form");
 const loginError=document.getElementById('login_error');
 // Use the function to get the contactnumber cookie
-let role = getCookie('role');
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     let data={
         email: document.getElementById("email").value,
         password: document.getElementById("password").value
     };
-
-
     fetch('/login',{
         method: 'POST',
         headers: {
@@ -32,17 +29,29 @@ form.addEventListener("submit", (e) => {
         },
         body: JSON.stringify(data)
     })
-    .then(res=>{
-        if(res.ok){
-            if(role==='admin'){
+    .then(res => res.json())
+    .then(result => {
+        if (result.token) {
+            // Set the role in a cookie
+            document.cookie = `role=${result.role};path=/`;
+
+            // Redirect based on role
+            if (result.role === 'admin') {
                 window.open("views/admin/talent.html", "_self");
-            }else if(role==='talent'){
+            } else if (result.role === 'talent') {
                 window.open("views/talent/search.html", "_self");
-            }else{
+            } else {
                 window.open("views/client/talents.html", "_self");
             }
+        } else {
+            // Handle login errors
+            loginError.textContent = result.message || 'Login failed';
         }
     })
+    .catch(error => {
+        console.error('Error during login:', error);
+        loginError.textContent = 'An error occurred during login';
+    });
 });
 
 function getCookie(name) {

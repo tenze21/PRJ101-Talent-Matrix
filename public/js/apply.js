@@ -1,8 +1,11 @@
 const form = document.querySelector(".application-form");
 const nameEl = document.querySelector("#name");
+const emailEl=document.querySelector("#email");
+const cid=document.querySelector("#cid");
 const phoneNumberEl = document.querySelector("#phoneNumber");
 const passwordEl = document.querySelector("#password");
 const confirmPasswordEl = document.querySelector("#confirmPassword");
+const portfolioEl = document.querySelector("#portfolio-link");
 const showHidePassword = document.querySelector(".hide_password");
 const showHideConfirmPassword = document.querySelector(".hide_comfirmpassword");
 
@@ -19,7 +22,28 @@ form.addEventListener("submit", (e) => {
     isPasswordSecure &&
     isConfirmPasswordValid;
   if (isFormValid) {
-    location.reload();
+    let data={
+      fullname:nameEl.value,
+      email: emailEl.value,
+      cid:cid.value,
+      phone_number:phoneNumberEl.value,
+      password:passwordEl.value,
+      portfolio_link:portfolioEl.value,
+    }
+    // Perform the fetch request for form data posting
+    fetch("/apply",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(data)
+    })
+    .then(res=>{
+      if(res.status===201){
+        window.open("/views/talent/Talent_form.html");
+      }
+    })
+    .catch(e=>console.error("Error:", e))
   }
 });
 
