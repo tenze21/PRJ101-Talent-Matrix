@@ -34,7 +34,21 @@ form.addEventListener("submit", (e) => {
       organization:organizationEl.value,
       password:passwordEl.value,
     }
-    // Perform the fetch request for form data posting
+    fetch('/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset-UTF-8'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(
+      res=>{
+        if(res.status===201){
+          alert("Registration Successful! Welcome to Talent Matrix");
+        }
+      }
+    )
+    .catch(e=>console.error("Error:", e))
   }
 });
 
