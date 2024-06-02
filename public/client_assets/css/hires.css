@@ -88,7 +88,7 @@ main{
 .no_hires{
     width: 900px;
     height: 500px;
-    background-image: linear-gradient(to top, rgb(20 189 243 /0.3), rgb(20 189 243 /0.3)), url(images/no_hires.jpeg);
+    background-image: linear-gradient(to top, rgb(20 189 243 /0.3), rgb(20 189 243 /0.3)), url(../images/no_hires.jpeg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

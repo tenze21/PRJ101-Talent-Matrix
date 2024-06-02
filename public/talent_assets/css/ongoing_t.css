@@ -242,7 +242,7 @@ p {
       rgb(20 189 243 /0.3),
       rgb(20 189 243 /0.3)
     ),
-    url(images/no_projects.jpeg);
+    url(../images/no_projects.jpeg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
