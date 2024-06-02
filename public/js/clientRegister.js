@@ -20,6 +20,7 @@ form.addEventListener("submit", (e) => {
 
   let isFormValid = isNameValid && isphoneNumberValid && isRegionValid && isPasswordSecure && isConfirmPasswordValid;
   if (isFormValid) {
+<<<<<<< HEAD
     let data = {
       fullname: nameEl.value,
       email: emailEl.value,
@@ -40,6 +41,7 @@ form.addEventListener("submit", (e) => {
       .then((res) => {
         if (res.status === 201) {
           alert("Registration Successful! Welcome to Talent Matrix");
+          window.open("../views/login.html")
         }
       })
       .catch((e) => console.error("Error:", e));
