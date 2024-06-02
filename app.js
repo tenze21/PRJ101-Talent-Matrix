@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 //required routes
-const clientRouter = require("./routes/client");
+const userRouter = require("./routes/user");
 
 //serve stactic file
 app.use(express.static("public"));
@@ -15,12 +15,12 @@ app.use(express.static("public"));
 // Middleware
 app.use(express.json()); // Parse JSON bodies
 //mongo connect
-connectDB();
 const connectDB = require("./config/db");
 const { route } = require("./routes/client_profileRoutes");
+connectDB();
 
-//client router
-app.use("/client", clientRouter);
+//creating a user router
+app.use("/user", userRouter);
 
 app.get("/", (req, res) => {
   res.sendFile("views/index.html", { root: "public" });

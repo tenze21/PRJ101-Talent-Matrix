@@ -3,7 +3,7 @@ const router = express.Router();
 const controller = require("../controllers/client_profileController");
 
 // Create a new client
-router.post("/clients", controller.createClient);
+// router.post("/clients", controller.createClient);/*  */
 
 // Get a client by ID
 router.get("/clients/:userId", controller.getClientById);

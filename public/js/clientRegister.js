@@ -34,7 +34,7 @@ form.addEventListener("submit", (e) => {
       organization:organizationEl.value,
       password:passwordEl.value,
     }
-    fetch('/register', {
+    fetch('/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset-UTF-8'

@@ -1,6 +1,22 @@
 // controllers/clientController.js
 const Client = require("../model/clientModel");
 
+////////////////////////used Code/////////////////////////////////
+exports.createClient = async (req, res) => {
+  try {
+    console.log("creating client");
+    const client = new Client(req.body);
+    await client.save();
+    res.status(201).json(client);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+
+
+/////////////////////////unused code ///////////////////////
+
 exports.getAllClients = async (req, res) => {
   try {
     const clients = await Client.find();
@@ -64,17 +80,5 @@ exports.deleteClient = async (req, res) => {
     res.status(200).json({ message: "Client removed" });
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
-  }
-};
-
-////////////////////////used Code/////////////////////////////////
-exports.createClient = async (req, res) => {
-  try {
-    console.log("creating client");
-    const client = new Client(req.body);
-    await client.save();
-    res.status(201).json(client);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
   }
 };

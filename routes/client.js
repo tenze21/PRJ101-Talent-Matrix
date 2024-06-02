@@ -4,4 +4,4 @@ const controller = require("../controllers/client");
 
 //create client
 
-router.post("/clients", controller.createClient);
+router.post("/create_clients", controller.createClient);
