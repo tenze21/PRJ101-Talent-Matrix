@@ -7,7 +7,8 @@ window.onload = function () {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      const wrapperGrid = document.querySelector(".wrapper_grid");
+      const wrapperGrid = document.querySelector(".wrapper_grid_pending");
+      const pendingTab=document.getElementById("pending");
       ///card gererate
       data.forEach((data) => {
         // Create a new talent_card_wrapper div
@@ -40,9 +41,8 @@ window.onload = function () {
         <p>Email Address: <span id="email">${data.email}</span></p>
         <p>CID: <span id="cid">${data.cid}</span></p>
         <p>Phone Number: <span id="phone_number">${data.phone_number}</span></p>
-        <p>Portfolio: <span id="portfolio">${data.portfolio}</span></p>
+        <p>Portfolio: <span id="portfolio">${data.portfolio_link}</span></p>
     `;
-
         // Create the "View full profile" link
         const viewProfileLink = document.createElement("a");
 
@@ -60,6 +60,7 @@ window.onload = function () {
 
         // Append the talentCardWrapper to the wrapperGrid
         wrapperGrid.appendChild(talentCardWrapper);
+        pendingTab.appendChild(wrapperGrid);
       });
     })
     .catch((error) => {
