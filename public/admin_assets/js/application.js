@@ -18,9 +18,9 @@ window.onload = function () {
         const button = document.createElement("button");
         button.classList.add("shortlist");
         button.setAttribute("title", "shortlist");
-        button.onclick=function(){
+        button.onclick = function () {
           shortlistTalent(data.email, this); //change the state of talent from pending to shortlisted.
-        } 
+        };
         button.innerHTML = `
         <svg width="28" height="35" viewBox="0 0 28 35" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M23.8164 33.4712L23.8163 33.471L14.4363 26.771L14.0003 26.4597L13.5644 26.771L4.1844 33.471L4.18411 33.4713C3.02577 34.2995 1.41699 33.4715 1.41699 32.048V5.33301C1.41699 4.20584 1.86476 3.12483 2.66179 2.3278C3.45882 1.53077 4.53982 1.08301 5.66699 1.08301H22.3337C23.4608 1.08301 24.5418 1.53077 25.3389 2.3278C26.1359 3.12483 26.5837 4.20584 26.5837 5.33301V32.0463C26.5837 33.4699 24.9731 34.2978 23.8164 33.4712Z" fill="white" stroke="black" stroke-width="1.5" />
@@ -72,30 +72,36 @@ window.onload = function () {
 const shortlistConfirmationModal = document.querySelector(".confirmation_modal_shortlist");
 const modalOpen = document.querySelectorAll(".shortlist");
 const modalClose = shortlistConfirmationModal.querySelector(".cancel_btn");
-const confirmShorlist= shortlistConfirmationModal.querySelector(".confirm_btn");
-function shortlistTalent(email,btn){
+const confirmShorlist = shortlistConfirmationModal.querySelector(".confirm_btn");
+function shortlistTalent(email, btn) {
   shortlistConfirmationModal.showModal();
   modalClose.addEventListener("click", () => {
     shortlistConfirmationModal.close();
   });
-  confirmShorlist.addEventListener("click",()=>{
-    fetch("/update/status",{
-      method:"PUT",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({email:email})
-    })
-    .then(res=>{
-      if(res.ok){
-        const talentCard=btn.parentElement;
-        talentCard.remove();
-      }
-    })
-    .catch(e=>console.error("error:", e))
-  })
-}
+  confirmShorlist.addEventListener("click", () => {
+    const emailSpan = document.getElementById("email");
+    const emailAddress = emailSpan.textContent;
 
+    console.log(emailAddress);
+
+    fetch(`/talent/up_pending_status/${emailAddress}`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // body: JSON.stringify({ email: email }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          alert("sucessfully updated");
+          const talentCard = btn.parentElement;
+          talentCard.remove();
+          shortlistConfirmationModal.close();
+        }
+      })
+      .catch((e) => console.error("error:", e));
+  });
+}
 
 // projects tab functionality
 const tabContainer = document.querySelector(".tabs_container");
