@@ -1,15 +1,7 @@
 const Client = require('../model/client_profileModel');
 
 // Create a new client
-exports.createClient = async (req, res) => {
-  try {
-    const client = new Client(req.body);
-    await client.save();
-    res.status(201).json(client);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+
 
 // Get a client by ID
 exports.getClientById = async (req, res) => {
