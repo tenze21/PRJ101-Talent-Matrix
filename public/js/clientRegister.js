@@ -20,7 +20,6 @@ form.addEventListener("submit", (e) => {
 
   let isFormValid = isNameValid && isphoneNumberValid && isRegionValid && isPasswordSecure && isConfirmPasswordValid;
   if (isFormValid) {
-<<<<<<< HEAD
     let data = {
       fullname: nameEl.value,
       email: emailEl.value,
