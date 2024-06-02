@@ -1,3 +1,5 @@
+let skills=[];
+
 (function() {
     // Your existing expertise.js code here
     const dropdown1 = document.getElementById('custom-dropdown');
@@ -7,7 +9,7 @@
         const MAX_SELECTION = 10;
 
         // Mock options, replace with your own
-        const options = ['Animation', 'App Development', 'Ajax', 'Artificial Intelligence', 'Bootstrap', 'Branding', 'Business', 'Development', 'Content Writing', 'Copy Writing', 'Creative Writing', 'CSS 3', 'C# nxnmdjx', 'Data Analysis', 'Digital Marketing', 'Django', 'Event Planning', 'Express js', 'Figma', 'Graphic Design', 'GraphQL', 'HTML 5',
+        const options = ['Animation', 'App Development', 'Ajax', 'Artificial Intelligence', 'Bootstrap', 'Branding', 'Business', 'Development', 'Content Writing', 'Copy Writing', 'Creative Writing', 'CSS 3', 'C#', 'Data Analysis', 'Digital Marketing', 'Django', 'Event Planning', 'Express js', 'Figma', 'Graphic Design', 'GraphQL', 'HTML 5',
                      'Illustration', 'Javascript', 'Marketing Strategy', 'Mobile Development', 'MongoDB', 'Music', 'Production', 'Node js', 'Photography', 'PHP', 'Posgre', 'SQL', 'Project Management', 'Python 3', 'React', 'Responsive Development', 'Ruby', 'Search Engine Optimization (SEO)', 'Software Development', 'Translation', 'User Experience (UX) Design', 'User Interface (UI) Design', 'Videography', 'Web Design', 'Wordpress'];
 
         // Function to create option elements
@@ -24,7 +26,8 @@
         // Function to toggle selection of an option
         function toggleSelection(optionText) {
         	const optionTextWithoutCross = optionText.replace(/&times;/g, '');  // Remove close icon character,
-            console.log(optionTextWithoutCross);
+            // console.log(optionTextWithoutCross);
+            skills.push(optionTextWithoutCross);
     const selectedOptionIndex = Array.from(selectedOptionsDiv.children).findIndex(option => {
         // Use strict equality instead of includes
         const optionTextTrimmed = option.textContent.slice(0, -1).trim().toLowerCase();
@@ -46,6 +49,7 @@
                 selectedOption.classList.add('selected-option');
                 selectedOption.addEventListener('click', function() {
                     selectedOption.remove();
+                    skills.pop();
                 });
                 const closeIcon = document.createElement('span');
                 closeIcon.innerHTML = '&times;';
@@ -94,3 +98,60 @@
         });
 })();
 
+const usernameEl=document.getElementById("username");
+const dzongkhagEl=document.getElementById("dzongkhag");
+const regionEl=document.getElementById("gewog");
+const bioEl=document.getElementById("bio");
+const schoolEl=document.getElementById("school");
+const StudyFieldEl=document.getElementById("study-field");
+const eduFromEl=document.getElementById("edufrom");
+const eduTillEl=document.getElementById("edutill");
+const categoryEl= document.getElementById("category");
+const experienceEl=document.getElementById("experience");
+const companyEl=document.getElementById("company");
+const titleEl=document.getElementById("title");
+const empFromEl=document.getElementById("emp_from");
+const empToEl=document.getElementById("date_to");
+const facebookEl=document.getElementById("facebook");
+const twitterEl=document.getElementById("twitter");
+const linkedinEl=document.getElementById("linkedin");
+const form=document.getElementById("talent_form");
+const submit=document.getElementById("submit_btn");
+
+submit.addEventListener("click", (e)=>{
+    e.preventDefault();
+    const data={
+        username:usernameEl.value,
+        dzongkhag:dzongkhagEl.value,
+        region:regionEl.value,
+        bio:bioEl.value,
+        school:schoolEl.value,
+        field_of_study:StudyFieldEl.value,
+        education_date_from:eduFromEl.value,
+        education_date_to:eduTillEl.value,
+        category:categoryEl.value,
+        experiences:experienceEl.value,
+        company:companyEl.value,
+        ex_position:titleEl.value,
+        employment_from:empFromEl.value,
+        employment_to:empToEl.value,
+        facebook:facebookEl.value,
+        twitter:twitterEl.value,
+        linkedin:linkedinEl.value,
+        expertise:skills.toString(),
+    }
+    fetch("/apply", {
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(data)
+    })
+    .then(res=>{
+        if(res.status===201){
+            alert("Your profile has been successfully created. Please login again to continue!");
+            window.open("../../views/login.html")
+        }
+    })
+    .catch(e=>console.error("Error:", e))
+});
