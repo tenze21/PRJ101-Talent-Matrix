@@ -1,7 +1,10 @@
 const form = document.querySelector(".registration-form");
 const nameEl = document.querySelector("#name");
+const emailEl = document.querySelector("#email");
 const phoneNumberEl = document.querySelector("#phoneNumber");
+const dzongkhagEl=document.querySelector("#dzongkhag");
 const regionEl = document.querySelector("#region");
+const organizationEl=document.querySelector("#organizationName");
 const passwordEl = document.querySelector("#password");
 const confirmPasswordEl = document.querySelector("#confirmPassword");
 const showHidePassword = document.querySelector(".hide_password");
@@ -22,7 +25,16 @@ form.addEventListener("submit", (e) => {
     isPasswordSecure &&
     isConfirmPasswordValid;
   if (isFormValid) {
-    location.reload();
+    let data={
+      name:nameEl.value,
+      email: emailEl.value,
+      phoneNumber:phoneNumberEl.value,
+      dzongkhag:dzongkhagEl.value,
+      region:regionEl.value,
+      organization:organizationEl.value,
+      password:passwordEl.value,
+    }
+    // Perform the fetch request for form data posting
   }
 });
 
