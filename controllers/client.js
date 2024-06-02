@@ -13,6 +13,21 @@ exports.getAllClients = async (req, res) => {
   }
 };
 
+exports.get_client_email = async (req, res) => {
+  try {
+    console.log("here");
+    const email = req.params.email;
+
+    console.log(email);
+    const clients = await User.find({ email: email });
+    console.log(clients);
+
+    res.status(200).json(clients);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 /////////////////////////unused code ///////////////////////
 
 // exports.createClient = async (req, res) => {
