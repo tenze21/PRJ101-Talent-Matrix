@@ -86,7 +86,7 @@ window.onload = function () {
         button.classList.add("shortlist");
         button.setAttribute("title", "shortlist");
         button.onclick = function () {
-          shortlistTalent(data.email, this); //change the state of talent from pending to shortlisted.
+          approveTalent(data.email, this); //change the state of talent from pending to shortlisted.
         };
         button.innerHTML = `
         <svg width="28" height="35" viewBox="0 0 28 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -170,6 +170,47 @@ function shortlistTalent(email, btn) {
   });
 }
 
+// for opening and closing comfirmation modal for approving talent
+const approveConfirmationModal = document.querySelector(".confirmation_modal_approve");
+const approveModalOpen = document.querySelectorAll(".approve");
+const approveModalClose = approveConfirmationModal.querySelector(".cancel_btn");
+const confirmApprove=approveConfirmationModal.querySelector(".confirm_btn");
+
+function approveTalent(email, btn) {
+  approveConfirmationModal.showModal();
+  approveModalClose.addEventListener("click", () => {
+    approveConfirmationModal.close();
+  });
+  confirmApprove.addEventListener("click", () => {
+    const emailSpan = document.getElementById("email");
+    const emailAddress = emailSpan.textContent;
+
+    console.log(emailAddress);
+
+    fetch(`/talent/up_shorlisted_status/${emailAddress}`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // body: JSON.stringify({ email: email }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          alert("sucessfully updated");
+          const talentCard = btn.parentElement;
+          talentCard.remove();
+          approveConfirmationModal.close();
+        }
+      })
+      .catch((e) => console.error("error:", e));
+  });
+}
+
+let viewmore = (email) => {
+  console.log(`${email}`);
+};
+
+
 // projects tab functionality
 const tabContainer = document.querySelector(".tabs_container");
 const tabList = document.querySelector(".tab_list");
@@ -211,21 +252,4 @@ function switchTab(newTab) {
   newTab.setAttribute("aria-selected", "true");
 }
 
-// for opening and closing comfirmation modal for shortlisting talent
-const approveConfirmationModal = document.querySelector(".confirmation_modal_approve");
-const approveModalOpen = document.querySelectorAll(".approve");
-const approveModalClose = approveConfirmationModal.querySelector(".cancel_btn");
 
-approveModalOpen.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    approveConfirmationModal.showModal();
-  });
-});
-
-approveModalClose.addEventListener("click", () => {
-  approveConfirmationModal.close();
-});
-
-let viewmore = (email) => {
-  console.log(`${email}`);
-};
