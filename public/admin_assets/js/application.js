@@ -62,6 +62,72 @@ window.onload = function () {
         wrapperGrid.appendChild(talentCardWrapper);
         pendingTab.appendChild(wrapperGrid);
       });
+
+    })
+    .catch((error) => {
+      alert(error);
+      console.error("Error fetching data:", error);
+    });
+
+    fetch("/shortlisted")
+    .then(res=>{res.json()})
+    .then((data) => {
+      console.log(data);
+      const wrapperGrid = document.querySelector(".wrapper_grid_shortlisted");
+      const shortlistedTab=document.getElementById("shortlisted");
+      ///card gererate
+      data.forEach((data) => {
+        // Create a new talent_card_wrapper div
+        const talentCardWrapper = document.createElement("div");
+        talentCardWrapper.classList.add("talent_card_wrapper");
+
+        // Create the button element for shortlisting
+        const button = document.createElement("button");
+        button.classList.add("shortlist");
+        button.setAttribute("title", "shortlist");
+        button.onclick = function () {
+          shortlistTalent(data.email, this); //change the state of talent from pending to shortlisted.
+        };
+        button.innerHTML = `
+        <svg width="28" height="35" viewBox="0 0 28 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.8164 33.4712L23.8163 33.471L14.4363 26.771L14.0003 26.4597L13.5644 26.771L4.1844 33.471L4.18411 33.4713C3.02577 34.2995 1.41699 33.4715 1.41699 32.048V5.33301C1.41699 4.20584 1.86476 3.12483 2.66179 2.3278C3.45882 1.53077 4.53982 1.08301 5.66699 1.08301H22.3337C23.4608 1.08301 24.5418 1.53077 25.3389 2.3278C26.1359 3.12483 26.5837 4.20584 26.5837 5.33301V32.0463C26.5837 33.4699 24.9731 34.2978 23.8164 33.4712Z" fill="white" stroke="black" stroke-width="1.5" />
+        </svg>
+    `;
+
+        // Create the profile image element
+        const profileImage = document.createElement("div");
+        profileImage.classList.add("profile");
+        profileImage.innerHTML = '<img src="/admin_assets/images/default_profile.svg" alt="talent profile" />';
+
+        // Create the details div with the user data
+        const details = document.createElement("div");
+        details.classList.add("details");
+        details.innerHTML = `
+        <p>Full Name: <span id="name">${data.fullname}</span></p>
+        <p>Email Address: <span id="email">${data.email}</span></p>
+        <p>CID: <span id="cid">${data.cid}</span></p>
+        <p>Phone Number: <span id="phone_number">${data.phone_number}</span></p>
+        <p>Portfolio: <span id="portfolio">${data.portfolio_link}</span></p>
+    `;
+        // Create the "View full profile" link
+        const viewProfileLink = document.createElement("a");
+
+        const url = `/views/admin/talent_profile.html?email=${encodeURIComponent(data.email)}`;
+        // Set the href attribute with the constructed URL
+        viewProfileLink.setAttribute("href", url);
+
+        viewProfileLink.textContent = "View full profile";
+
+        // Append the elements to the talentCardWrapper
+        talentCardWrapper.appendChild(button);
+        talentCardWrapper.appendChild(profileImage);
+        talentCardWrapper.appendChild(details);
+        talentCardWrapper.appendChild(viewProfileLink);
+
+        // Append the talentCardWrapper to the wrapperGrid
+        wrapperGrid.appendChild(talentCardWrapper);
+        shortlistedTab.appendChild(wrapperGrid);
+      });
     })
     .catch((error) => {
       alert(error);
