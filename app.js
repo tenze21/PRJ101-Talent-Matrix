@@ -4,6 +4,7 @@ const connectDB = require("./config/db");
 const userRouter = require("./routes/user");
 const adminRouter = require("./routes/admin_route");
 const talentRouter = require("./routes/talent_route");
+const clientRouter = require("./routes/client_route");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,6 +25,7 @@ connectDB();
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 app.use("/talent", talentRouter);
+app.use("/client", clientRouter);
 
 app.get("/", (req, res) => {
   res.sendFile("views/index.html", { root: "public" });

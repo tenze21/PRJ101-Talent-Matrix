@@ -1,30 +1,19 @@
 // controllers/clientController.js
-const Client = require("../model/clientModel");
+const User = require("../model/user_model");
 
 ////////////////////////used Code/////////////////////////////////
-exports.createClient = async (req, res) => {
-  try {
-    console.log("creating client");
-    const client = new Client(req.body);
-    await client.save();
-    res.status(201).json(client);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-
-
-/////////////////////////unused code ///////////////////////
 
 exports.getAllClients = async (req, res) => {
   try {
-    const clients = await Client.find();
+    const clients = await User.find({ role: "client" });
+    console.log(clients);
     res.status(200).json(clients);
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
   }
 };
+
+/////////////////////////unused code ///////////////////////
 
 // exports.createClient = async (req, res) => {
 //   try {
