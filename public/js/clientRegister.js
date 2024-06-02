@@ -27,17 +27,17 @@ form.addEventListener("submit", (e) => {
   if (isFormValid) {
     let data={
       fullname:nameEl.value,
-      email: emailEl.value,
+      email:emailEl.value,
       phone_number:phoneNumberEl.value,
       dzongkhag:dzongkhagEl.value,
       region:regionEl.value,
       organisation:organizationEl.value,
       password:passwordEl.value,
     }
-    fetch('/register', {
+    fetch('/user/create_user',{
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json; charset-UTF-8'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     })
@@ -45,6 +45,7 @@ form.addEventListener("submit", (e) => {
       res=>{
         if(res.status===201){
           alert("Registration Successful! Welcome to Talent Matrix");
+          window.open("../views/login.html")
         }
       }
     )

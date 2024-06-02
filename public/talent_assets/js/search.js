@@ -102,6 +102,7 @@ const options = [
     display(result);
   }
   
+  let skills=[];
   function display(result){
     const content=result.map((list)=>{
       return "<li onclick=selectInput(this)>"+ list + "</li>";
@@ -111,6 +112,7 @@ const options = [
   
   function selectInput(list){
     let selectedOption= list.innerHTML;
+    skills.push(selectedOption);
     searchInput.value=selectedOption;
     resultDisplay.innerHTML="";
     searchForm.submit();
