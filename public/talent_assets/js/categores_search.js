@@ -66,7 +66,7 @@ let countries = [
 ];
 
 function addCountry(selectedCountry) {
-    options.innerHTML = "";
+    // options.innerHTML = "";
     countries.forEach(country => {
         let isSelected = country == selectedCountry ? "selected" : "";
         let li = `<li onclick="updateName(this)" class="${isSelected}">${country}</li>`;

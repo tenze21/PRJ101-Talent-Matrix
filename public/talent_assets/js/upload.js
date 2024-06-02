@@ -6,11 +6,4 @@ inputFile.onchange=function(){
 }
 
 
-const usernameEl=document.getElementById("username");
-const dzongkhagEl=document.getElementById("dzongkhag");
-const regionEl=document.getElementById("gewog");
-const bioEl=document.getElementById("bio");
-const schoolEl=document.getElementById("school");
-const StudyFieldEl=document.getElementById("study-field");
-const eduFromEl=document.getElementById("edufrom");
-const eduTillEl=document.getElementById("edutill");
+
