@@ -1,25 +1,24 @@
-// index.js
-require("dotenv").config();
-
-const path = require("path");
 const express = require("express");
+const bodyParser = require("body-parser");
+const connectDB = require("./config/db");
+const userRouter = require("./routes/user");
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-//required routes
-const userRouter = require("./routes/user");
+// Middleware to parse JSON bodies
+app.use(bodyParser.json());
 
-//serve stactic file
+// Middleware to parse URL-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Serve static files
 app.use(express.static("public"));
 
-// Middleware
-app.use(express.json()); // Parse JSON bodies
-//mongo connect
-const connectDB = require("./config/db");
-const { route } = require("./routes/client_profileRoutes");
+// Connect to MongoDB
 connectDB();
 
-//creating a user router
+// Creating a user router
 app.use("/user", userRouter);
 
 app.get("/", (req, res) => {
@@ -29,6 +28,8 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+///////////////////////////////////////////////////////////////////////////
 
 // unused route
 // user routes

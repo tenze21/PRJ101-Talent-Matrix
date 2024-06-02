@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controllers/user");
+const userController = require("../controllers/user");
 
-//create client
+// Define routes
+router.post("/create_user", userController.createUser);
 
-router.post("/create_user", controller.createUser);
+router.post("/login_user", userController.loginUser);
+
+
 
 module.exports = router;
