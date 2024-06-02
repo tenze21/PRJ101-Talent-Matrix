@@ -32,8 +32,6 @@ form.addEventListener("submit", (e) => {
     .then((result) => {
       console.log(result.userType);
 
-      // Set the role in a cookie
-
       // Redirect based on role
       if (result.userType == "admin") {
         // window.open("views/admin/talent.html", "_self");
@@ -43,12 +41,12 @@ form.addEventListener("submit", (e) => {
         window.location.href = "/views/talent/search.html";
       } else {
         // window.open("/client/talents.html", "_self");
-        window.location.href = "/client/talents.html";
+        window.location.href = "/views/client/talents.html";
       }
     })
     .catch((error) => {
-      console.error("Error during login:", error);
-      loginError.textContent = "An error occurred during login";
+      alert(error);
+      window.location.reload();
     });
 });
 

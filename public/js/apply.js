@@ -13,6 +13,7 @@ let isNameValid = false,
   isphoneNumberValid = false,
   isPasswordSecure = false,
   isConfirmPasswordValid = false;
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -25,7 +26,7 @@ form.addEventListener("submit", (e) => {
       phone_number: phoneNumberEl.value,
       password: passwordEl.value,
       portfolio_link: portfolioEl.value,
-      role:"talent"
+role:"talent"      
     };
     // Perform the fetch request for form data posting
     fetch("/user/create_user", {

@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: false,
+    unique: true,
   },
   cid: {
     type: Number, // Changed type to Number for cid
@@ -96,6 +97,24 @@ const userSchema = new mongoose.Schema({
   },
   profile_img: {
     type: Buffer, // Changed type to Buffer for profile_img
+    required: false,
+  },
+  status: {
+    type: String,
+    enum: ["pending", "short", "approved"], // Changed type to Buffer for profile_img
+    required: false,
+    default: "pending",
+  },
+  facebook: {
+    type: String,
+    required: false,
+  },
+  twitter: {
+    type: String,
+    required: false,
+  },
+  linkedin: {
+    type: String,
     required: false,
   },
 });

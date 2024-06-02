@@ -29,6 +29,8 @@ exports.loginUser = async (req, res) => {
       console.log("login sucessfull");
     } else {
       console.log("login not sucessful");
+      // res.status(500).json({ error: "check your email or password" });
+      // return;
     }
 
     res.status(200).json({

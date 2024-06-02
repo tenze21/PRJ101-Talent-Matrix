@@ -15,12 +15,12 @@ let isNameValid = false,
   isRegionValid = false,
   isPasswordSecure = false,
   isConfirmPasswordValid = false;
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   let isFormValid = isNameValid && isphoneNumberValid && isRegionValid && isPasswordSecure && isConfirmPasswordValid;
   if (isFormValid) {
-<<<<<<< HEAD
     let data = {
       fullname: nameEl.value,
       email: emailEl.value,
@@ -29,19 +29,20 @@ form.addEventListener("submit", (e) => {
       region: regionEl.value,
       organisation: organizationEl.value,
       password: passwordEl.value,
+      role: "client",
     };
     console.log(data);
     fetch("/user/create_user", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json;",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
       .then((res) => {
         if (res.status === 201) {
           alert("Registration Successful! Welcome to Talent Matrix");
-          window.open("../views/login.html")
+          window.location.href = "../views/index.html";
         }
       })
       .catch((e) => console.error("Error:", e));
