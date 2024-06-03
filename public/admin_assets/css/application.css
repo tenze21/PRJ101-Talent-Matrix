@@ -16,11 +16,15 @@
     --font-weight-bold: 700;
     --font-weight-extra-bold: 700;
 }
+body{
+    min-height: 100vh;
+}
 main{
     padding-inline: 3rem;
     margin-bottom: 2rem;
 }
 .tabs_container{
+    min-height: 100vh;
     [role="tablist"]{
         display: flex;
         justify-content: center;
