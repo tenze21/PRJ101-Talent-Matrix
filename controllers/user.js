@@ -22,9 +22,11 @@ exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
     console.log(email, password);
 
+    const user_email = email;
+
     // Find the user by email
-    const user_info = await User.findOne({ email });
-    console.log(user_info.role);
+    const user_info = await User.findOne({ email: user_email });
+    console.log(user_info);
 
     if (user_info.password == password) {
       console.log("login sucessfull");
@@ -34,11 +36,19 @@ exports.loginUser = async (req, res) => {
         message: "Login successful",
         userType: user_info.role,
       });
+<<<<<<< HEAD
     } else {
       console.log("login not sucessful");
       // res.status(500).json({ error: "check your email or password" });
       
       // return;
+=======
+      return;
+    } else {
+      console.log("login not sucessful");
+      res.status(500).json({ error: "check your email or password" });
+      return;
+>>>>>>> 549332c1e2d8b396deec9406bc2b44f1caa1148e
     }
   } catch (error) {
     console.error(error);

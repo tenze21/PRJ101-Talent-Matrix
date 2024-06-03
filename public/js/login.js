@@ -28,24 +28,25 @@ form.addEventListener("submit", (e) => {
     },
     body: JSON.stringify(data),
   })
-    .then((res) => {
-      return res.json().then((result) => ({ status: res.status, body: result }));
-    })
-    .then(({ status, body }) => {
-      console.log(status);
-      if (status === 200) {
-        console.log(body.userType);
+    .then((res) => res.json())
+    .then((result) => {
+      console.log(result.error);
+      if (result.error == "check your email or password") {
+        alert("incorrect password or incorrect email");
+        window.location.reload();
+      } else if (result.message == "Login successful") {
+        alert("login sucessful");
         // Redirect based on role
-        if (body.userType === "admin") {
+        if (result.userType == "admin") {
+          // window.open("views/admin/talent.html", "_self");
           window.location.href = "/views/admin/talent.html";
-        } else if (body.userType === "talent") {
+        } else if (result.userType == "talent") {
+          // window.open("views/talent/search.html", "_self");
           window.location.href = "/views/talent/search.html";
-        } else if (body.userType === "client") {
+        } else {
+          // window.open("/client/talents.html", "_self");
           window.location.href = "/views/client/talents.html";
         }
-      } else {
-        const error = document.getElementById("login_error");
-        error.style.display = "block";
       }
     })
     .catch((error) => {
