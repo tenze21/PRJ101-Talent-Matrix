@@ -40,7 +40,9 @@ form.addEventListener("submit", (e) => {
         if (res.status === 201) {
           // window.open("/views/talent/Talent_form.html");
           window.location.href = `/views/talent/Talent_form.html?email=${encodeURIComponent(emailEl.value)}`;
-        }
+        }else{
+          alert("An account with that email already exist on Talent Matrix.");
+        };
       })
       .catch((e) => console.error("Error:", e));
   }

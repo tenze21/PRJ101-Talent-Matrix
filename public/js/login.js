@@ -1,7 +1,6 @@
 const password = document.querySelector("#password");
 const showHidePassword = document.querySelector(".password-hide");
 
-// Use the function to get the contactnumber cookie
 let role = getCookie("role");
 showHidePassword.addEventListener("click", function () {
   this.classList.toggle("bx-show");
@@ -21,6 +20,7 @@ form.addEventListener("submit", (e) => {
     email: document.getElementById("email").value,
     password: document.getElementById("password").value,
   };
+
   fetch("/user/login_user", {
     method: "POST",
     headers: {
@@ -28,25 +28,29 @@ form.addEventListener("submit", (e) => {
     },
     body: JSON.stringify(data),
   })
-    .then((res) => res.json())
-    .then((result) => {
-      console.log(result.userType);
-
-      // Redirect based on role
-      if (result.userType == "admin") {
-        // window.open("views/admin/talent.html", "_self");
-        window.location.href = "/views/admin/talent.html";
-      } else if (result.userType == "talent") {
-        // window.open("views/talent/search.html", "_self");
-        window.location.href = "/views/talent/search.html";
+    .then((res) => {
+      return res.json().then((result) => ({ status: res.status, body: result }));
+    })
+    .then(({ status, body }) => {
+      console.log(status);
+      if (status === 200) {
+        console.log(body.userType);
+        // Redirect based on role
+        if (body.userType === "admin") {
+          window.location.href = "/views/admin/talent.html";
+        } else if (body.userType === "talent") {
+          window.location.href = "/views/talent/search.html";
+        } else if (body.userType === "client") {
+          window.location.href = "/views/client/talents.html";
+        }
       } else {
-        // window.open("/client/talents.html", "_self");
-        window.location.href = "/views/client/talents.html";
+        const error = document.getElementById("login_error");
+        error.style.display = "block";
       }
     })
     .catch((error) => {
-      alert(error);
-      window.location.reload();
+      console.error("Error in fetch request:", error);
+      alert("An error occurred. Please try again.");
     });
 });
 

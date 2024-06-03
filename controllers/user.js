@@ -30,16 +30,16 @@ exports.loginUser = async (req, res) => {
       console.log("login sucessfull");
       // Set a cookie with the user's email
       res.cookie("user_email", decodeURIComponent(email));
+      res.status(200).json({
+        message: "Login successful",
+        userType: user_info.role,
+      });
     } else {
       console.log("login not sucessful");
       // res.status(500).json({ error: "check your email or password" });
+      
       // return;
     }
-
-    res.status(200).json({
-      message: "Login successful",
-      userType: user_info.role,
-    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });

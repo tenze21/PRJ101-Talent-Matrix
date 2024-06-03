@@ -43,9 +43,13 @@ form.addEventListener("submit", (e) => {
         if (res.status === 201) {
           alert("Registration Successful! Welcome to Talent Matrix");
           window.location.href = "../views/index.html";
+        }else{
+          alert("An account with that email already exist on Talent Matrix!")
         }
       })
-      .catch((e) => console.error("Error:", e));
+      .catch((e) => {
+        console.error("error:", e)
+      }); 
   }
 });
 
