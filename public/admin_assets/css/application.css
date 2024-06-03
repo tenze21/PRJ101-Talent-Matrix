@@ -17,14 +17,14 @@
     --font-weight-extra-bold: 700;
 }
 body{
-    min-height: 100vh;
+    min-height: 60vh;
 }
 main{
     padding-inline: 3rem;
     margin-bottom: 2rem;
 }
 .tabs_container{
-    min-height: 100vh;
+    min-height: 60vh;
     [role="tablist"]{
         display: flex;
         justify-content: center;

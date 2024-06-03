@@ -16,12 +16,12 @@
   --font-weight-extra-bold: 700;
 }
 body{
-    min-height: 100vh;
+    min-height: 60vh;
 }
 main{
     margin-bottom: 2rem;
     padding-inline: 3rem;
-    min-height: 100vh;
+    min-height: 60vh;
     .searchbar{
         form{
             position: relative;
@@ -80,6 +80,7 @@ main{
                 p{
                     font-family: var(--font-family-body);
                     margin-bottom: 0.5rem;
+                    text-align: center;
                 }
             }
             button{

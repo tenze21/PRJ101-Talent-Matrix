@@ -71,7 +71,6 @@ window.onload = function () {
   fetch("/admin/get_talents_short")
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       const wrapperGrid = document.querySelector(".wrapper_grid_shortlisted");
       const shortlistedTab = document.getElementById("shortlisted");
       ///card gererate

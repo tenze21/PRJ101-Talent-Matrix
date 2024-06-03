@@ -40,3 +40,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded",()=> {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const email = urlParams.get("email");
+  fetch(`/client/get_client_email/${email}`)
+  .then(res=>res.json())
+  .then(data=>{
+    console.log(data);
+    data=data[0];
+    document.getElementById("userid").textContent=data._id;
+    document.getElementById("fullname").textContent=data.fullname;
+    document.getElementById("phonenumber").textContent=data.phone_number;
+    document.getElementById("email").textContent=data.email;
+    document.getElementById("dzongkhag").textContent=data.dzongkhag;
+    document.getElementById("region").textContent=data.region;
+    document.getElementById("organization").textContent=data.organisation;
+  })
+  .catch(e=>console.error("error fetching client data:", e));
+});

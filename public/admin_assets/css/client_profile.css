@@ -18,6 +18,7 @@
 main{
     padding-inline: 3rem;
     margin-bottom: 2rem;
+    min-height: 60vh;
 }
 .client_profile_wrapper{
     display: flex;

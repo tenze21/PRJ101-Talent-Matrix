@@ -23,7 +23,7 @@ window.onload = function () {
 
 function generateCards(data) {
   const wrapper = document.querySelector(".wrapper");
-
+  
   data.forEach((user) => {
     // Create card wrapper
     const cardWrapper = document.createElement("div");
@@ -73,6 +73,9 @@ function generateCards(data) {
     // Create and append button
     const button = document.createElement("button");
     button.textContent = "See More";
+    button.addEventListener('click', ()=>{
+      window.location.href=`/views/admin/client_profile.html?email=${encodeURIComponent(user.email)}` 
+    });
     cardWrapper.appendChild(button);
 
     // Append card wrapper to the wrapper

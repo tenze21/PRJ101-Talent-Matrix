@@ -2,15 +2,6 @@ const confirmationModal = document.querySelector(".confirmation_modal");
 const modalOpen = document.querySelector(".delete_user_btn");
 const modalClose = document.querySelector(".cancel_btn");
 
-window.onload = function () {
-  // fetch("/admin/get_talents").then((response) => response.json());
-  // fetch(`/client/get_client_email/${email}`)
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //   });
-};
-
 modalOpen.addEventListener("click", () => {
   confirmationModal.showModal();
 });
@@ -28,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch(`/client/get_client_email/${email}`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       data = data[0];
 
       document.getElementById("username").textContent = data.username;
@@ -39,8 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("about").textContent = data.bio;
 
       const skillsContainer = document.querySelector(".skills");
-      skillsContainer.innerHTML = "";
-      data.expertise.forEach((skill) => {
+      const expertise=data.expertise.split(",");
+      expertise.forEach((skill) => {
         const li = document.createElement("li");
         li.className = "skill";
         li.textContent = skill;
@@ -49,17 +39,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       document.getElementById("school").textContent = data.school;
       document.getElementById("field_of_study").textContent = data.field_of_study;
-      document.getElementById("date_from").textContent = data.education_date_from;
-      document.getElementById("date_to").textContent = data.education_date_to;
+      document.getElementById("date_from").textContent = data.education_date_from.split("T")[0];
+      document.getElementById("date_to").textContent = data.education_date_to.split("T")[0];
 
       document.getElementById("title").textContent = data.ex_position;
       document.getElementById("company").textContent = data.company;
-      document.getElementById("from").textContent = data.employment_from;
-      document.getElementById("to").textContent = data.employment_to;
+      document.getElementById("from").textContent = data.employment_from.split("T")[0];
+      document.getElementById("to").textContent = data.employment_to.split("T")[0];
 
-      document.querySelector(".Facebook img").parentNode.href = data.facebook;
-      document.querySelector(".twitter img").parentNode.href = data.twitter;
-      document.querySelector(".linkdin img").parentNode.href = data.linkedin;
+      document.querySelector(".Facebook").parentNode.href = data.facebook;
+      document.querySelector(".twitter").parentNode.href = data.twitter;
+      document.querySelector(".linkdin").parentNode.href = data.linkedin;
     })
     .catch((error) => console.error("Error fetching talent:", error));
 });
