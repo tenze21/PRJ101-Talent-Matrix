@@ -57,7 +57,8 @@ exports.update_talent_short = async (req, res) => {
 exports.get_all_talent = async (req, res) => {
   try {
     console.log("here");
-    const talents = await User.find({ role: "talent" });
+    const talents = await User.find({ role: "talent", status: "approved" });
+
     console.log(talents);
     res.status(200).json(talents);
   } catch (error) {
