@@ -10,6 +10,11 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(bodyParser.json({ limit: "10mb" }));
+
+// Set a higher limit for URL-encoded payloads
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
+
 app.use(cookieParser());
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());

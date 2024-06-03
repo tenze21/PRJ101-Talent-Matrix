@@ -86,7 +86,27 @@ function displayInitialValue() {
 const profile = document.querySelector(".default_profile");
 const profileInput = document.querySelector("#profile");
 profileInput.onchange = function () {
-  profile.src = URL.createObjectURL(profileInput.files[0]);
+  const file = profileInput.files[0];
+  profile.src = URL.createObjectURL(file);
+  console.log(file);
+
+  const formData = new FormData();
+  formData.append("image", file);
+
+  fetch("/client/upload_profile_client_img", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      alert("Image uploaded successfully!");
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("Image upload failed!");
+    });
 };
 
 // Form validation for profile update
