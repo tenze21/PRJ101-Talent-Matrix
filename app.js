@@ -5,10 +5,12 @@ const userRouter = require("./routes/user");
 const adminRouter = require("./routes/admin_route");
 const talentRouter = require("./routes/talent_route");
 const clientRouter = require("./routes/client_route");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cookieParser());
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 

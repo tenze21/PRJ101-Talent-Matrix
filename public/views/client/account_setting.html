@@ -55,7 +55,7 @@
          <div class="profile_menu">
           <img src="/client_assets/images/tenzin-img.svg" alt="profile picture">
           <h3 id="client_name">Tenzin Choda</h3>
-          <h5>Client</h5>
+          <h5 id="user_type">Client</h5>
           <ul>
               <li><a href="account_setting.html"><i class='bx bx-cog'></i> Account Settings</a></li>
               <li><a href="../login.html"><i class='bx bx-log-out'></i> Logout</a></li>
@@ -72,11 +72,11 @@
           <input type="file" accept="image/jpeg, image/png, image/jpg" id="profile" name="profile" class="profile"></input>
         </div>
         <div class="details">
-          <p>User ID: <span id="idValue" class="detail">12345678</span></p>
-          <p>Full Name: <span id="nameValue" class="detail">Tenzin Choda</span></p>
-          <p>Email: <span id="emailValue" class="detail">tenzin@example.com</span></p>
-          <p>Phone Number: <span id="phone_numberValue" class="detail">17234567</span></p>
-          <p>Address: <span><span id="dzongkhagValue" class="detail">Paro</span>, <span id="regionValue" class="detail">Changzamto</span></span></p>
+          <p>User ID: <span id="idValue" class="detail"></span></p>
+          <p>Full Name: <span id="nameValue" class="detail"> </span></p>
+          <p>Email: <span id="emailValue" class="detail"></span></p>
+          <p>Phone Number: <span id="phone_numberValue" class="detail"></span></p>
+          <p>Address: <span><span id="dzongkhagValue" class="detail"></span>, <span id="regionValue" class="detail"></span></span></p>
         </div>
          <button class="edit_btn" id="edit_personal_info"><i class='bx bx-edit-alt'></i></button>
       </div>
@@ -84,7 +84,7 @@
         <i class='bx bxs-business'></i>
         <div class="details">
           <p>Organization Name:</p>
-          <p id="organization_nameValue">Druk Holding and Investment</p>
+          <p id="organization_nameValue"></p>
         </div>
         <button class="edit_btn" id="edit_organization_info"><i class='bx bx-edit-alt'></i></button>
       </div>
@@ -196,7 +196,7 @@
     <!-- Personal info modal end -->
     <!-- Organization info modal start -->
     <dialog class="organization_info_modal">
-      <form action="#">
+      <form action="#" id="organization_edit_form">
         <div class="form_field">
           <label for="organization_name">Organization Name</label>
           <input type="text" id="organization_name" name="Organization Name">
@@ -278,7 +278,7 @@
         </form>
       </dialog>
       <!-- Feedback modal start-->
-
+    <script src="/client_assets/js/client_profile_info.js"></script> 
     <script src="/client_assets/js/general.js"></script>
     <script src="/client_assets/js/account_setting.js"></script>
   </body>

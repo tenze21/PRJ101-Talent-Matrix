@@ -1,4 +1,5 @@
 const User = require("../model/user_model");
+const cookieParser = require("cookie-parser");
 
 exports.createUser = async (req, res) => {
   try {
@@ -27,6 +28,8 @@ exports.loginUser = async (req, res) => {
 
     if (user_info.password == password) {
       console.log("login sucessfull");
+      // Set a cookie with the user's email
+      res.cookie("user_email", decodeURIComponent(email));
     } else {
       console.log("login not sucessful");
       // res.status(500).json({ error: "check your email or password" });
