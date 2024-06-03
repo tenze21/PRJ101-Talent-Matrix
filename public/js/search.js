@@ -155,3 +155,4 @@ function selectInput(list){
   searchForm.submit();
   searchInput.value= selectedOption;
 }
+

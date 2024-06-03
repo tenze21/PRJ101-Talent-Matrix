@@ -147,8 +147,6 @@ function shortlistTalent(email, btn) {
     const emailSpan = document.getElementById("email");
     const emailAddress = emailSpan.textContent;
 
-    console.log(emailAddress);
-
     fetch(`/talent/up_pending_status/${emailAddress}`, {
       method: "post",
       headers: {

@@ -26,4 +26,5 @@ new MultiSelectTag('skills', {
     onChange: function(values) {
         console.log(values)
     }
-})
+});
+

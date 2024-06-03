@@ -206,3 +206,8 @@ function selectInput(list){
   searchInput.value=list.innerHTML;
   resultDisplay.innerHTML="";
 }
+
+
+searchInput.addEventListener("change", ()=>{
+  window.location.href="../views/search.html";
+});

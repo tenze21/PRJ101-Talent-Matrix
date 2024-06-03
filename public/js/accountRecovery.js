@@ -3,7 +3,7 @@ const inputs= document.querySelectorAll('#verification_code');
 const button= document.querySelector('#next_btn');
 form.addEventListener('submit', (e)=>{
     e.preventDefault();
-    window.location.href ="../passwordreset.html";
+    window.location.href ="../views/passwordreset.html";
 })
 
 inputs.forEach((input, index1)=>{
