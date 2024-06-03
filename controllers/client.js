@@ -85,6 +85,23 @@ exports.update_profile = async (req, res) => {
   }
 };
 
+exports.update_profile_img = async (req, res) => {
+  try {
+    console.log("update profile");
+    const image = req.file.buffer;
+    console.log(image);
+    const email = req.cookies["user_email"];
+
+    console.log(email);
+    // const user = await User.findOne({ email: email });
+    const result = await User.updateOne({ email: email }, { $set: { profile_img: image } });
+    console.log(result);
+    res.status(200).json(result);
+  } catch (err) {
+    // res.status(500).json({ error: err.message });
+  }
+};
+
 /////////////////////////unused code ///////////////////////
 
 // exports.createClient = async (req, res) => {
