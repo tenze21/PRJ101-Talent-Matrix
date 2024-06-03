@@ -36,19 +36,11 @@ exports.loginUser = async (req, res) => {
         message: "Login successful",
         userType: user_info.role,
       });
-<<<<<<< HEAD
-    } else {
-      console.log("login not sucessful");
-      // res.status(500).json({ error: "check your email or password" });
-      
-      // return;
-=======
       return;
     } else {
       console.log("login not sucessful");
       res.status(500).json({ error: "check your email or password" });
       return;
->>>>>>> 549332c1e2d8b396deec9406bc2b44f1caa1148e
     }
   } catch (error) {
     console.error(error);
