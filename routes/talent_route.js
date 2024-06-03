@@ -9,6 +9,8 @@ router.post("/up_pending_status/:email", talentController.update_talent_pending)
 
 router.post("/up_shorlisted_status/:email", talentController.update_talent_short);
 
+router.get("/get_all_talent", talentController.get_all_talent);
+
 // router.post("/login_user", userController.loginUser);
 
 module.exports = router;

@@ -117,6 +117,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  review: {
+    type: String,
+    required: false,
+  },
 });
 
 module.exports = mongoose.model("Users", userSchema);
