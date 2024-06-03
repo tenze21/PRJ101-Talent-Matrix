@@ -2,23 +2,23 @@ window.onload = function () {
   console.log("Reloading");
 
   // Fetch data from the server
-    fetch("/client/get_clients")
-      .then((response) => {
-        // Check if the response is ok (status 200-299)
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Handle the data from the response
-        console.log(data);
-        generateCards(data);
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during the fetch
-        console.error("Error fetching data:", error);
-      });
+  fetch("/client/get_clients")
+    .then((response) => {
+      // Check if the response is ok (status 200-299)
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Handle the data from the response
+      console.log(data);
+      generateCards(data);
+    })
+    .catch((error) => {
+      // Handle any errors that occurred during the fetch
+      console.error("Error fetching data:", error);
+    });
 };
 
 function generateCards(data) {

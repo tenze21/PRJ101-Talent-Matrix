@@ -9,6 +9,16 @@ exports.get_talent = async (req, res) => {
   }
 };
 
+exports.get_talent_short = async (req, res) => {
+  try {
+    const talents = await User.find({ status: "short", role: "talent" });
+    console.log(talents); // Assuming status is a property of the User model
+    res.status(200).json(talents);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 // exports.loginUser = async (req, res) => {
 //   try {
 //     // Extract email and password from request body
