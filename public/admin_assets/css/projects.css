@@ -131,6 +131,32 @@ main{
     }
 }
 
+.delete_btn{
+  background: red;
+  margin-left: 0.5rem;
+  border: none;
+  padding: 8px 0.5rem;
+  border-radius: 8px;
+  color: #fff;
+  &:hover{
+                            cursor: pointer;
+                            opacity: 0.8;
+                        }
+}
+
+.done_btn{
+  background: var(--green);
+  margin-left: 0.5rem;
+  border: none;
+  padding: 8px 0.5rem;
+  border-radius: 8px;
+  color: #fff;
+  &:hover{
+                            cursor: pointer;
+                            opacity: 0.8;
+                        }
+}
+
 #completed_projects{
     table{
         tr{
