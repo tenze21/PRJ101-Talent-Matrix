@@ -99,6 +99,8 @@
     font-family: var(--font-family-header);
     font-size: 20px;
     font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    color: #000000;
 }
 h4{
     font-family: var(--font-family-header);
