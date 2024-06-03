@@ -30,18 +30,23 @@ form.addEventListener("submit", (e) => {
   })
     .then((res) => res.json())
     .then((result) => {
-      console.log(result.userType);
-
-      // Redirect based on role
-      if (result.userType == "admin") {
-        // window.open("views/admin/talent.html", "_self");
-        window.location.href = "/views/admin/talent.html";
-      } else if (result.userType == "talent") {
-        // window.open("views/talent/search.html", "_self");
-        window.location.href = "/views/talent/search.html";
-      } else {
-        // window.open("/client/talents.html", "_self");
-        window.location.href = "/views/client/talents.html";
+      console.log(result.error);
+      if (result.error == "check your email or password") {
+        alert("incorrect password or incorrect email");
+        window.location.reload();
+      } else if (result.message == "Login successful") {
+        alert("login sucessful");
+        // Redirect based on role
+        if (result.userType == "admin") {
+          // window.open("views/admin/talent.html", "_self");
+          window.location.href = "/views/admin/talent.html";
+        } else if (result.userType == "talent") {
+          // window.open("views/talent/search.html", "_self");
+          window.location.href = "/views/talent/search.html";
+        } else {
+          // window.open("/client/talents.html", "_self");
+          window.location.href = "/views/client/talents.html";
+        }
       }
     })
     .catch((error) => {
