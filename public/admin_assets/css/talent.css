@@ -181,6 +181,8 @@ form {
     border: 1px solid #000;
     border-radius: 10px;
     padding: 1rem;
+    position: relative;
+    /* height: 260px; */
     .talent_image {
       img {
         border-radius: 10px;
@@ -206,6 +208,7 @@ form {
     }
     .skills_wrapper {
       margin-top: 0.9rem;
+      height: 100px;
       ul {
         display: flex;
         flex-wrap: wrap;
@@ -237,6 +240,9 @@ form {
       width: 150px;
       padding: 0.5rem 0;
       border-radius: 20px;
+      /* position: absolute;
+      bottom: 1rem;
+      left: 3.5rem; */
       &:hover {
         opacity: 0.9;
       }

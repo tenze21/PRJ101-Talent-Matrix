@@ -1,14 +1,60 @@
+// const { json } = require("body-parser");
+
 window.onload = function () {
   console.log("here");
   fetch("/talent/get_all_talent")
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-
-      // generate card here
+      showTalents(data);
     });
 };
 
+function showTalents(talents){
+  const wrapper=document.querySelector(".talent_cards_wrapper");
+  talents.forEach((talent)=>{
+    const container=document.createElement("div");
+    container.classList.add("card_container");
+
+    const imgWrapper=document.createElement("div");
+    imgWrapper.classList.add("talent_image");
+    const img=document.createElement("img");
+    img.src="/admin_assets/images/_Co-working Life__ by Stocksy Contributor _BONNINSTUDIO _ 1.svg";
+    imgWrapper.appendChild(img);
+    container.appendChild(imgWrapper);
+
+    const name=document.createElement("h2");
+    name.classList.add("username");
+    name.textContent=talent.username;
+    container.appendChild(name);
+
+    const address=document.createElement("p");
+    address.classList.add("address");
+    address.innerHTML=`<span class="address-icon material-symbols-outlined">location_on</span>
+    <span id="dzongkhag">${talent.dzongkhag}</span>, <span>${talent.region}</span>`
+    container.appendChild(address);
+
+    const skillsWrapper=document.createElement("div");
+    skillsWrapper.classList.add("skills_wrapper");
+    const skills=talent.expertise.split(",");
+    skillsWrapper.innerHTML=`
+    <ul>
+    <li>${skills[0]}</li>
+    <li>${skills[1]}</li>
+    <li>${skills[2]}</li>
+    </ul>
+    `
+    container.appendChild(skillsWrapper)
+
+    const btn=document.createElement("a");
+    btn.classList.add("card_btn");
+    btn.textContent="see more";
+    btn.href=`/views/admin/talent_profile.html?email=${encodeURIComponent(talent.email)}`;
+    container.appendChild(btn);
+
+    wrapper.appendChild(container);
+  });
+}
 // Search suggestions logic
 const options = [
   "Machine Learning",
@@ -129,38 +175,38 @@ function selectInput(list) {
   searchInput.value = selectedOption;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetchTalents();
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   fetchTalents();
+// });
 
-async function fetchTalents() {
-  try {
-    const response = await fetch("/api/talents");
-    const talents = await response.json();
-    populateTalents(talents);
-  } catch (error) {
-    console.error("Error fetching talents:", error);
-  }
-}
+// async function fetchTalents() {
+//   try {
+//     const response = await fetch("/api/talents");
+//     const talents = await response.json();
+//     populateTalents(talents);
+//   } catch (error) {
+//     console.error("Error fetching talents:", error);
+//   }
+// }
 
-function populateTalents(talents) {
-  const template = document.getElementById("talent-card-template");
-  const container = document.getElementById("talent-cards-container");
+// function populateTalents(talents) {
+//   const template = document.getElementById("talent-card-template");
+//   const container = document.getElementById("talent-cards-container");
 
-  talents.forEach((talent) => {
-    const clone = template.content.cloneNode(true);
-    clone.querySelector(".talent_image img").src = talent.image || "assets/images/default_profile.svg";
-    clone.querySelector(".username").textContent = talent.fullname;
-    clone.querySelector(".dzongkhag").textContent = talent.location.city;
-    clone.querySelector(".country").textContent = talent.location.country;
+//   talents.forEach((talent) => {
+//     const clone = template.content.cloneNode(true);
+//     clone.querySelector(".talent_image img").src = talent.image || "assets/images/default_profile.svg";
+//     clone.querySelector(".username").textContent = talent.fullname;
+//     clone.querySelector(".dzongkhag").textContent = talent.location.city;
+//     clone.querySelector(".country").textContent = talent.location.country;
 
-    const skillsList = clone.querySelector(".skills-list");
-    talent.skills.forEach((skill) => {
-      const li = document.createElement("li");
-      li.textContent = skill;
-      skillsList.appendChild(li);
-    });
+//     const skillsList = clone.querySelector(".skills-list");
+//     talent.skills.forEach((skill) => {
+//       const li = document.createElement("li");
+//       li.textContent = skill;
+//       skillsList.appendChild(li);
+//     });
 
-    container.appendChild(clone);
-  });
-}
+//     container.appendChild(clone);
+//   });
+// }
