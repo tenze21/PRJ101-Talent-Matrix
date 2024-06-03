@@ -5,6 +5,7 @@ const userRouter = require("./routes/user");
 const adminRouter = require("./routes/admin_route");
 const talentRouter = require("./routes/talent_route");
 const clientRouter = require("./routes/client_route");
+const projectRouter = require("./routes/project_route");
 const cookieParser = require("cookie-parser");
 
 const app = express();
@@ -33,6 +34,7 @@ app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 app.use("/talent", talentRouter);
 app.use("/client", clientRouter);
+app.use("/project", projectRouter);
 
 app.get("/", (req, res) => {
   res.sendFile("views/index.html", { root: "public" });
