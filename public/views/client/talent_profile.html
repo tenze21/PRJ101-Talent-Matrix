@@ -20,15 +20,15 @@
     <!-- incon import -->
 
     <!-- style files -->
-    <link rel="stylesheet" href="assets/base.css" />
-    <link rel="stylesheet" href="assets/talent_profile.css" />
+    <link rel="stylesheet" href="/client_assets/css/base.css" />
+    <link rel="stylesheet" href="/client_assets/css/talent_profile.css" />
     <!-- style files -->
 
     <title>Profile</title>
   </head>
   <body>
     <nav class="navbar">
-      <img src="assets/images/logo.svg" alt="Logo" class="logo" />
+      <img src="/client_assets/images/logo.svg" alt="Logo" class="logo" />
       <button class="topnavOpen" id="btnOpen" aria-expanded="false">
         <i class="bx bx-menu"></i>
       </button>
@@ -64,28 +64,23 @@
         </ul>
       </div>
       <div class="profile_wrapper">
-        <button class="profile" aria-expanded="false">
-          <img src="/client_assets/images/default_profile.svg" alt="profile picture" />
-        </button>
+        <button class="profile" aria-expanded="false"></button> 
         <div class="profile_menu">
-          <img src="/client_assets/images/default_profile.svg" alt="profile picture" />
-          <h3 id="client_name">Tenzin Choda</h3>
-          <h5 id="user_type">Client</h5>
-          <ul>
-            <li>
-              <a href="account_setting.html"><i class="bx bx-cog"></i> Account Settings</a>
-            </li>
-            <li>
-              <a href="../login.html"><i class="bx bx-log-out"></i> Logout</a>
-            </li>
-          </ul>
+         <div class="img_wrapper">
+         </div>
+         <h3 id="client_name"></h3>
+         <h5 id="user_type"></h5>
+         <ul>
+             <li><a href="account_setting.html"><i class='bx bx-cog'></i> Account Settings</a></li>
+             <li><a href="../login.html"><i class='bx bx-log-out'></i> Logout</a></li>
+         </ul>
         </div>
-      </div>
+     </div>
     </nav>
     <main class="talent-form">
       <div class="profile_container">
         <div class="profile-img">
-          <img id="talent_profile" src="assets/images/default_profile.svg" alt="Talent profile" />
+          <img id="talent_profile" src="/client_assets/images/default_profile.svg" alt="Talent profile" />
         </div>
         <h3 id="username">X'mas</h3>
         <div class="address">
@@ -98,15 +93,15 @@
         <div class="media">
           <a href=""
             ><div class="Facebook">
-              <img src="assets/images/talent_facebook.svg" alt="talent facebook link" /></div
+              <img src="/client_assets/images/talent_facebook.svg" alt="talent facebook link" /></div
           ></a>
           <a href=""
             ><div class="twitter">
-              <img src="assets/images/talent_twitter.svg" alt="talent twitter link" /></div
+              <img src="/client_assets/images/talent_twitter.svg" alt="talent twitter link" /></div
           ></a>
           <a href=""
             ><div class="linkdin">
-              <img src="assets/images/talent_linkedin.svg" alt="talent linkedin link" /></div
+              <img src="/client_assets/images/talent_linkedin.svg" alt="talent linkedin link" /></div
           ></a>
         </div>
         <button class="hire_btn">Hire</button>
@@ -343,10 +338,10 @@
           <p>Thimphu, Bhutan</p>
           <a href="mailto:12230054.gcit@rub.edu.bt">talentmatrix.bht@gmail.com</a>
           <div class="social-icons">
-            <a href="#"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-            <a href="#"><img src="assets/images/linkedin-icon.svg" alt="Linked in" /></a>
-            <a href="#"><img src="assets/images/twitter-icon.svg" alt="Twitter" /></a>
-            <a href="#"><img src="assets/images/discord-icon.svg" alt="Discord" /></a>
+            <a href="#"><img src="/client_assets/images/facebook-icon.svg" alt="Facebook" /></a>
+            <a href="#"><img src="/client_assets/images/linkedin-icon.svg" alt="Linked in" /></a>
+            <a href="#"><img src="/client_assets/images/twitter-icon.svg" alt="Twitter" /></a>
+            <a href="#"><img src="/client_assets/images/discord-icon.svg" alt="Discord" /></a>
           </div>
         </div>
       </div>
@@ -358,7 +353,7 @@
     <!-- Contact us module start -->
     <dialog class="contact-modal" id="contact-modal">
       <button class="close-contact-modal">
-        <img src="assets/images/cross.svg" alt="Close the modal" />
+        <img src="/client_assets/images/cross.svg" alt="Close the modal" />
       </button>
       <form action="https://api.web3forms.com/submit" method="post">
         <input type="hidden" name="access_key" value="8de617bc-b858-4fa4-8c6a-f503ffab4244" />
@@ -393,7 +388,7 @@
     <!-- Feedback modal start-->
     <dialog class="feedback-modal">
       <button class="close-feedback-modal">
-        <img src="assets/images/cross.svg" alt="Close modal" />
+        <img src="/client_assets/images/cross.svg" alt="Close modal" />
       </button>
       <form action="https://api.web3forms.com/submit" method="post">
         <input type="hidden" name="access_key" value="8de617bc-b858-4fa4-8c6a-f503ffab4244" />
@@ -405,8 +400,9 @@
     </dialog>
     <!-- Feedback modal start-->
     <script src="/client_assets/js/client_profile_info.js"></script>
+    <script src="/client_assets/js/general.js"></script>
+    <script src="/client_assets/js/talent_profile.js"></script>
+    <!-- <script src="/admin_assets/js/talent_profile.js"></script> -->
 
-    <script src="assets/general.js"></script>
-    <script src="assets/talent_profile.js"></script>
   </body>
 </html>

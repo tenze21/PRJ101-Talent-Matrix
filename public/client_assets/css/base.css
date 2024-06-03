@@ -228,6 +228,11 @@ span {
       &[aria-expanded="true"] + .profile_menu {
         display: flex;
       }
+      img{
+        border-radius: 50%;
+        width: 70px;
+        height: 45px;
+      }
     }
     .profile_menu {
       flex-direction: column;
