@@ -18,9 +18,66 @@ exports.get_client_email = async (req, res) => {
     console.log("here");
     const email = req.params.email;
 
-    console.log(email);
+    // console.log(email);
     const clients = await User.find({ email: email });
-    console.log(clients);
+    // console.log(clients);
+
+    res.status(200).json(clients);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.get_profile_email = async (req, res) => {
+  try {
+    console.log("here");
+    const email = req.params.email;
+
+    // console.log(email);
+    const clients = await User.find({ email: email });
+    // console.log(clients);
+
+    res.status(200).json(clients);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.delete_client = async (req, res) => {
+  try {
+    console.log("here123");
+    const email = req.params.email;
+
+    console.log(email);
+
+    const result = await User.deleteOne({ email: email });
+
+    if (result.deletedCount === 1) {
+      console.log(`Successfully deleted user with email: ${email}`);
+      res.status(200).json(clients);
+    }
+
+    console.log(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.update_profile = async (req, res) => {
+  try {
+    console.log("here123");
+    const email = req.params.email;
+
+    // console.log(req.body);
+    console.log(email);
+
+    const updatedUser = await User.findOneAndUpdate(
+      { email },
+      req.body,
+      { new: true } // This option returns the updated document
+    );
+    console.log("update sucess");
+    console.log(updatedUser);
 
     res.status(200).json(clients);
   } catch (err) {
