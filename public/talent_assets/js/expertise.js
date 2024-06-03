@@ -100,58 +100,114 @@ function getQueryParam(param) {
   });
 })();
 
-const usernameEl = document.getElementById("username");
-const dzongkhagEl = document.getElementById("dzongkhag");
-const regionEl = document.getElementById("gewog");
-const bioEl = document.getElementById("bio");
-const schoolEl = document.getElementById("school");
-const StudyFieldEl = document.getElementById("study-field");
-const eduFromEl = document.getElementById("edufrom");
-const eduTillEl = document.getElementById("edutill");
-const categoryEl = document.getElementById("category");
-const experienceEl = document.getElementById("experience");
-const companyEl = document.getElementById("company");
-const titleEl = document.getElementById("title");
-const empFromEl = document.getElementById("emp_from");
-const empToEl = document.getElementById("date_to");
-const facebookEl = document.getElementById("facebook");
-const twitterEl = document.getElementById("twitter");
-const linkedinEl = document.getElementById("linkedin");
-const form = document.getElementById("talent_form");
-const submit = document.getElementById("submit_btn");
+// const usernameEl = document.getElementById("username");
+// const dzongkhagEl = document.getElementById("dzongkhag");
+// const regionEl = document.getElementById("gewog");
+// const bioEl = document.getElementById("bio");
+// const schoolEl = document.getElementById("school");
+// const StudyFieldEl = document.getElementById("study-field");
+// const eduFromEl = document.getElementById("edufrom");
+// const eduTillEl = document.getElementById("edutill");
+// const categoryEl = document.getElementById("category");
+// const experienceEl = document.getElementById("experience");
+// const companyEl = document.getElementById("company");
+// const titleEl = document.getElementById("title");
+// const empFromEl = document.getElementById("emp_from");
+// const empToEl = document.getElementById("date_to");
+// const facebookEl = document.getElementById("facebook");
+// const twitterEl = document.getElementById("twitter");
+// const linkedinEl = document.getElementById("linkedin");
+// const form = document.getElementById("talent_form");
+// const submit = document.getElementById("submit_btn");
 
+// submit.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   const data = {
+//     username: usernameEl.value,
+//     dzongkhag: dzongkhagEl.value,
+//     region: regionEl.value,
+//     bio: bioEl.value,
+//     school: schoolEl.value,
+//     field_of_study: StudyFieldEl.value,
+//     education_date_from: eduFromEl.value,
+//     education_date_to: eduTillEl.value,
+//     category: categoryEl.value,
+//     experiences: experienceEl.value,
+//     company: companyEl.value,
+//     ex_position: titleEl.value,
+//     employment_from: empFromEl.value,
+//     employment_to: empToEl.value,
+//     facebook: facebookEl.value,
+//     twitter: twitterEl.value,
+//     linkedin: linkedinEl.value,
+//     expertise: skills.toString(),
+//   };
+
+// const email = getQueryParam("email");
+
+//   console.log(data);
+//   fetch(`/talent/update_talent/${email}`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(data),
+//   })
+//     .then((res) => {
+//       if (res.ok) {
+//         alert("Your profile has been successfully created. Please login again to continue!");
+//         window.location.href = "/views/index.html";
+//       }
+//     })
+//     .catch((e) => console.error("Error:", e));
+// });
+
+function updateImage() {
+  const inputFile = document.getElementById("input-file");
+  const file = inputFile.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const imgData = e.target.result;
+      document.getElementById("profile-pic").src = imgData;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+document.getElementById("input-file").addEventListener("change", updateImage);
+
+const submit = document.getElementById("submit_btn");
 submit.addEventListener("click", (e) => {
   e.preventDefault();
-  const data = {
-    username: usernameEl.value,
-    dzongkhag: dzongkhagEl.value,
-    region: regionEl.value,
-    bio: bioEl.value,
-    school: schoolEl.value,
-    field_of_study: StudyFieldEl.value,
-    education_date_from: eduFromEl.value,
-    education_date_to: eduTillEl.value,
-    category: categoryEl.value,
-    experiences: experienceEl.value,
-    company: companyEl.value,
-    ex_position: titleEl.value,
-    employment_from: empFromEl.value,
-    employment_to: empToEl.value,
-    facebook: facebookEl.value,
-    twitter: twitterEl.value,
-    linkedin: linkedinEl.value,
-    expertise: skills.toString(),
-  };
+
+  // Create a new FormData object
+  const formData = new FormData();
+
+  // Append form data to the FormData object
+  formData.append("username", document.getElementById("username").value);
+  formData.append("dzongkhag", document.getElementById("dzongkhag").value);
+  formData.append("region", document.getElementById("gewog").value);
+  formData.append("bio", document.getElementById("bio").value);
+  formData.append("school", document.getElementById("school").value);
+  formData.append("field_of_study", document.getElementById("study-field").value);
+  formData.append("education_date_from", document.getElementById("edufrom").value);
+  formData.append("education_date_to", document.getElementById("edutill").value);
+  // Append other form fields as needed
+  formData.append("expertise", skills.toString());
+
+  // Append the image file
+  const inputFile = document.getElementById("input-file");
+  const file = inputFile.files[0];
+  if (file) {
+    formData.append("profile_pic", file);
+  }
 
   const email = getQueryParam("email");
 
-  console.log(data);
   fetch(`/talent/update_talent/${email}`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
+    body: formData,
   })
     .then((res) => {
       if (res.ok) {
@@ -161,3 +217,9 @@ submit.addEventListener("click", (e) => {
     })
     .catch((e) => console.error("Error:", e));
 });
+
+// Function to get query parameter from URL
+function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}

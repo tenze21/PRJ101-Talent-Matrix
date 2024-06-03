@@ -2,7 +2,10 @@ const User = require("../model/user_model");
 
 exports.update_talent = async (req, res) => {
   try {
-    console.log("here");
+    console.log("update profile");
+    const image = req.file.buffer;
+    // console.log(image);
+
     const email = req.params.email;
     const updateData = req.body;
 
