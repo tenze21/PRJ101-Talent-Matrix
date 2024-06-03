@@ -8,7 +8,7 @@ window.onload = function () {
     .then((data) => {
       console.log(data);
       const wrapperGrid = document.querySelector(".wrapper_grid_pending");
-      const pendingTab=document.getElementById("pending");
+      const pendingTab = document.getElementById("pending");
       ///card gererate
       data.forEach((data) => {
         // Create a new talent_card_wrapper div
@@ -62,19 +62,18 @@ window.onload = function () {
         wrapperGrid.appendChild(talentCardWrapper);
         pendingTab.appendChild(wrapperGrid);
       });
-
     })
     .catch((error) => {
       alert(error);
       console.error("Error fetching data:", error);
     });
 
-    fetch("/shortlisted")
-    .then(res=>{res.json()})
+  fetch("/admin/get_talents_short")
+    .then((response) => response.json())
     .then((data) => {
       console.log(data);
       const wrapperGrid = document.querySelector(".wrapper_grid_shortlisted");
-      const shortlistedTab=document.getElementById("shortlisted");
+      const shortlistedTab = document.getElementById("shortlisted");
       ///card gererate
       data.forEach((data) => {
         // Create a new talent_card_wrapper div
@@ -161,8 +160,7 @@ function shortlistTalent(email, btn) {
       .then((res) => {
         if (res.ok) {
           alert("sucessfully updated");
-          const talentCard = btn.parentElement;
-          talentCard.remove();
+          window.location.reload();
           shortlistConfirmationModal.close();
         }
       })
@@ -174,7 +172,7 @@ function shortlistTalent(email, btn) {
 const approveConfirmationModal = document.querySelector(".confirmation_modal_approve");
 const approveModalOpen = document.querySelectorAll(".approve");
 const approveModalClose = approveConfirmationModal.querySelector(".cancel_btn");
-const confirmApprove=approveConfirmationModal.querySelector(".confirm_btn");
+const confirmApprove = approveConfirmationModal.querySelector(".confirm_btn");
 
 function approveTalent(email, btn) {
   approveConfirmationModal.showModal();
@@ -197,8 +195,10 @@ function approveTalent(email, btn) {
       .then((res) => {
         if (res.ok) {
           alert("sucessfully updated");
-          const talentCard = btn.parentElement;
-          talentCard.remove();
+          // const talentCard = btn.parentElement;
+          // talentCard.remove();
+          window.location.reload();
+
           approveConfirmationModal.close();
         }
       })
@@ -209,7 +209,6 @@ function approveTalent(email, btn) {
 let viewmore = (email) => {
   console.log(`${email}`);
 };
-
 
 // projects tab functionality
 const tabContainer = document.querySelector(".tabs_container");
@@ -251,5 +250,3 @@ function switchTab(newTab) {
   activePanel.removeAttribute("hidden");
   newTab.setAttribute("aria-selected", "true");
 }
-
-
