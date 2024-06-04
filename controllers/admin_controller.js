@@ -1,4 +1,5 @@
 const User = require("../model/user_model");
+const Profile = require("../model/project_model");
 
 exports.get_talent = async (req, res) => {
   try {
@@ -14,6 +15,16 @@ exports.get_talent_short = async (req, res) => {
     const talents = await User.find({ status: "short", role: "talent" });
     console.log(talents); // Assuming status is a property of the User model
     res.status(200).json(talents);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.get_pro_com = async (req, res) => {
+  try {
+    const project = await Profile.find({ hire_request: "pending" });
+    console.log(project); // Assuming status is a property of the User model
+    res.status(200).json(project);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

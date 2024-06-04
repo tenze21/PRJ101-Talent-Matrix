@@ -14,8 +14,9 @@ const projectSchema = new mongoose.Schema({
     required: false,
   },
   hire_request: {
-    type: "string",
+    type: String,
     enum: ["pending", "accepted", "rejected"],
+    default: "pending",
     required: false,
   },
   project_status: {

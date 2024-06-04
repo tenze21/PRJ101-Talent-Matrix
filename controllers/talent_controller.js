@@ -4,10 +4,12 @@ exports.update_talent = async (req, res) => {
   try {
     console.log("update profile");
     const image = req.file.buffer;
-    // console.log(image);
+    console.log(image);
 
     const email = req.params.email;
     const updateData = req.body;
+
+    updateData.profile_img = image;
 
     console.log(updateData, email);
 
@@ -61,6 +63,21 @@ exports.get_all_talent = async (req, res) => {
   try {
     console.log("here");
     const talents = await User.find({ role: "talent", status: "approved" });
+
+    console.log(talents);
+    res.status(200).json(talents);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.get_pro_info = async (req, res) => {
+  try {
+    const email = req.params.email;
+    console.log("email" + email);
+
+    console.log("here");
+    const talents = await User.find({ email: email });
 
     console.log(talents);
     res.status(200).json(talents);

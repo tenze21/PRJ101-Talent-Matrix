@@ -5,6 +5,22 @@ function getQueryParam(param) {
   return urlParams.get(param);
 }
 
+window.onload = function () {
+  const email = getQueryParam("email");
+  fetch(`/talent/get_pro_info/${email}`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data[0].fullname);
+      data = data[0];
+
+      document.getElementById("full_name").textContent = data.fullname;
+      document.getElementById("hi_name").innerHTML = `Hi <span>${data.fullname}</span>,`;
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+};
+
 (function () {
   // Your existing expertise.js code here
   const dropdown1 = document.getElementById("custom-dropdown");
@@ -100,69 +116,7 @@ function getQueryParam(param) {
   });
 })();
 
-// const usernameEl = document.getElementById("username");
-// const dzongkhagEl = document.getElementById("dzongkhag");
-// const regionEl = document.getElementById("gewog");
-// const bioEl = document.getElementById("bio");
-// const schoolEl = document.getElementById("school");
-// const StudyFieldEl = document.getElementById("study-field");
-// const eduFromEl = document.getElementById("edufrom");
-// const eduTillEl = document.getElementById("edutill");
-// const categoryEl = document.getElementById("category");
-// const experienceEl = document.getElementById("experience");
-// const companyEl = document.getElementById("company");
-// const titleEl = document.getElementById("title");
-// const empFromEl = document.getElementById("emp_from");
-// const empToEl = document.getElementById("date_to");
-// const facebookEl = document.getElementById("facebook");
-// const twitterEl = document.getElementById("twitter");
-// const linkedinEl = document.getElementById("linkedin");
-// const form = document.getElementById("talent_form");
-// const submit = document.getElementById("submit_btn");
-
-// submit.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   const data = {
-//     username: usernameEl.value,
-//     dzongkhag: dzongkhagEl.value,
-//     region: regionEl.value,
-//     bio: bioEl.value,
-//     school: schoolEl.value,
-//     field_of_study: StudyFieldEl.value,
-//     education_date_from: eduFromEl.value,
-//     education_date_to: eduTillEl.value,
-//     category: categoryEl.value,
-//     experiences: experienceEl.value,
-//     company: companyEl.value,
-//     ex_position: titleEl.value,
-//     employment_from: empFromEl.value,
-//     employment_to: empToEl.value,
-//     facebook: facebookEl.value,
-//     twitter: twitterEl.value,
-//     linkedin: linkedinEl.value,
-//     expertise: skills.toString(),
-//   };
-
-// const email = getQueryParam("email");
-
-//   console.log(data);
-//   fetch(`/talent/update_talent/${email}`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(data),
-//   })
-//     .then((res) => {
-//       if (res.ok) {
-//         alert("Your profile has been successfully created. Please login again to continue!");
-//         window.location.href = "/views/index.html";
-//       }
-//     })
-//     .catch((e) => console.error("Error:", e));
-// });
-
-function updateImage() {
+function updateeImage() {
   const inputFile = document.getElementById("input-file");
   const file = inputFile.files[0];
   if (file) {
@@ -223,3 +177,5 @@ function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(param);
 }
+
+const email = getQueryParam("email");

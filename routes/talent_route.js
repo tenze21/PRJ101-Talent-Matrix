@@ -18,6 +18,6 @@ router.post("/up_shorlisted_status/:email", talentController.update_talent_short
 
 router.get("/get_all_talent", talentController.get_all_talent);
 
-// router.post("/login_user", userController.loginUser);
+router.get("/get_pro_info/:email", talentController.get_pro_info);
 
 module.exports = router;
