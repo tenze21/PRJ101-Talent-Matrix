@@ -26,10 +26,48 @@ window.onload = function () {
       document.getElementById("dzongkhagValue").textContent = userData.dzongkhag;
       document.getElementById("regionValue").textContent = userData.region;
 
+      if(userData.profile_img){
+        var base64String = arrayBufferToBase64(userData.profile_img.data);
+        const wrapper1=document.querySelector('.profile');
+        const img=document.createElement("img");
+        img.src=`data:image/jpeg;base64,${base64String}`;
+        wrapper1.appendChild(img);
+  
+        const imgWrapper=document.querySelector(".wrapper_main");
+        const img2=document.createElement("img");
+        img2.src=`data:image/jpeg;base64,${base64String}`;
+        imgWrapper.appendChild(img2);
+
+        const wrapperMain=document.querySelector('.wrapper');
+        const img3=document.createElement("img");
+        img3.src=`data:image/jpeg;base64,${base64String}`;
+        img3.style.borderRadius="50%";
+        img3.style.height="150px";
+        img3.style.width="150px";
+        wrapperMain.appendChild(img3);
+
+        const defaultProfile1=document.getElementById("default_profile1");
+        const defaultProfile2=document.getElementById("default_profile2");
+        const defaultProfile3=document.getElementById("default_profile3");
+        defaultProfile1.style.display="none";
+        defaultProfile2.style.display="none";
+        defaultProfile3.style.display="none";
+      }
       // Update organization information
       document.getElementById("organization_nameValue").textContent = userData.organisation;
     });
 };
+
+// Function to convert byte array to Base64 string
+function arrayBufferToBase64(buffer) {
+  let binary = '';
+  let bytes = new Uint8Array(buffer);
+  let len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
+}
 
 const openModel1 = document.querySelector("#edit_personal_info");
 const personalInfoModal = document.querySelector(".personal_info_modal");

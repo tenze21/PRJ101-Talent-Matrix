@@ -60,6 +60,11 @@
   border-radius: 50%;
   object-fit: contain;
 }
+.client_img{
+  width: 154px;
+  height: 154px;
+}
+
 .profile_container h3 {
   font-family: var(--font-family-header);
   font-size: 2rem;

@@ -165,18 +165,25 @@ window.onload = function () {
         //   document.getElementById("profile_picture").src = profilePictureUrl;
         document.getElementById("client_name").textContent = clientName;
         document.getElementById("user_type").textContent = userType;
-        const base64String = arrayBufferToBase64(data.profile_img.data);
-        // Set the image source
-        const wrapper=document.querySelector('.profile');
-        const img=document.createElement("img");
-        img.src=`data:image/jpeg;base64,${base64String}`;
-        img.classList.add("client_img");
-        wrapper.appendChild(img);
+        if(data.profile_img.data){
+          var base64String = arrayBufferToBase64(data.profile_img.data);
+          // Set the image source
+          const wrapper=document.querySelector('.profile');
+          const img=document.createElement("img");
+          img.src=`data:image/jpeg;base64,${base64String}`;
+          img.classList.add("client_img");
+          wrapper.appendChild(img);
+    
+          const imgWrapper=document.querySelector(".img_wrapper");
+          const img2=document.createElement("img");
+          img2.src=`data:image/jpeg;base64,${base64String}`;
+          imgWrapper.appendChild(img2);
   
-        const imgWrapper=document.querySelector(".img_wrapper");
-        const img2=document.createElement("img");
-        img2.src=`data:image/jpeg;base64,${base64String}`;
-        imgWrapper.appendChild(img2);
+          const defaultProfile1=document.getElementById("default_profile1")
+          const defaultProfile2=document.getElementById("default_profile2")
+          defaultProfile1.style.display="none";
+          defaultProfile2.style.display="none";
+        }
       })
       .catch((error) => {
         console.error("Error fetching profile:", error);

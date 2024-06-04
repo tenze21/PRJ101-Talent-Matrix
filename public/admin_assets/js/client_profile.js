@@ -64,6 +64,29 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("dzongkhag").textContent = data.dzongkhag;
       document.getElementById("region").textContent = data.region;
       document.getElementById("organization").textContent = data.organisation;
+
+      const wrapper= document.querySelector(".client_profile");
+
+      var base64String = arrayBufferToBase64(data.profile_img.data);
+      const img=document.createElement("img");
+      img.src=`data:image/jpeg;base64,${base64String}`
+      img.classList.add("client_img");
+      img.style.height="154px";
+      img.style.width="154px";
+      wrapper.appendChild(img);
+
     })
     .catch((e) => console.error("error fetching client data:", e));
 });
+
+
+// Function to convert byte array to Base64 string
+function arrayBufferToBase64(buffer) {
+  let binary = '';
+  let bytes = new Uint8Array(buffer);
+  let len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
+}

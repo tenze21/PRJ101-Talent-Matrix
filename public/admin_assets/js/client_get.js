@@ -30,8 +30,9 @@ function generateCards(data) {
     cardWrapper.classList.add("card_wrapper");
 
     // Create img element
+    let base64String = arrayBufferToBase64(user.profile_img.data);
     const img = document.createElement("img");
-    img.src = "/admin_assets/images/default_profile.svg";
+    img.src = `data:image/jpeg;base64,${base64String}`;
     img.alt = "client profile";
     cardWrapper.appendChild(img);
 
@@ -81,4 +82,15 @@ function generateCards(data) {
     // Append card wrapper to the wrapper
     wrapper.appendChild(cardWrapper);
   });
+}
+
+// Function to convert byte array to Base64 string
+function arrayBufferToBase64(buffer) {
+  let binary = '';
+  let bytes = new Uint8Array(buffer);
+  let len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
 }
