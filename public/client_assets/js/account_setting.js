@@ -125,7 +125,7 @@ const profile = document.querySelector(".default_profile");
 const profileInput = document.querySelector("#profile");
 profileInput.onchange = function () {
   const file = profileInput.files[0];
-  profile.src = URL.createObjectURL(file);
+  // profile.src = URL.createObjectURL(file);
   console.log(file);
 
   const formData = new FormData();

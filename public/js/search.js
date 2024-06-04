@@ -156,3 +156,70 @@ function selectInput(list){
   searchInput.value= selectedOption;
 }
 
+window.onload = function () {
+  console.log("here");
+  fetch("/talent/get_all_talent")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      showTalents(data);
+    });
+};
+
+function showTalents(talents){
+  const wrapper=document.querySelector(".talent_cards_wrapper");
+  talents.forEach((talent)=>{
+    const container=document.createElement("div");
+    container.classList.add("card_container");
+
+    const imgWrapper=document.createElement("div");
+    imgWrapper.classList.add("talent_image");
+    const img=document.createElement("img");
+    let base64String = arrayBufferToBase64(talent.profile_img.data);
+    img.src=`data:image/jpeg;base64,${base64String}`;
+    imgWrapper.appendChild(img);
+    container.appendChild(imgWrapper);
+
+    const name=document.createElement("h2");
+    name.classList.add("username");
+    name.textContent=talent.username;
+    container.appendChild(name);
+
+    const address=document.createElement("p");
+    address.classList.add("address");
+    address.innerHTML=`<span class="address-icon material-symbols-outlined">location_on</span>
+    <span id="dzongkhag">${talent.dzongkhag}</span>, <span>${talent.region}</span>`
+    container.appendChild(address);
+
+    const skillsWrapper=document.createElement("div");
+    skillsWrapper.classList.add("skills_wrapper");
+    const skills=talent.expertise.split(",");
+    skillsWrapper.innerHTML=`
+    <ul>
+    <li>${skills[0]}</li>
+    <li>${skills[1]}</li>
+    <li>${skills[2]}</li>
+    </ul>
+    `
+    container.appendChild(skillsWrapper)
+
+    const btn=document.createElement("a");
+    btn.classList.add("card_btn");
+    btn.textContent="see more";
+    btn.href=`/views/talent_profile.html?email=${encodeURIComponent(talent.email)}`;
+    container.appendChild(btn);
+
+    wrapper.appendChild(container);
+  });
+}
+
+// Function to convert byte array to Base64 string
+function arrayBufferToBase64(buffer) {
+  let binary = '';
+  let bytes = new Uint8Array(buffer);
+  let len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
+}

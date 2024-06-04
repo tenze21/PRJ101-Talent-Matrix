@@ -31,7 +31,10 @@ window.onload = function () {
         // Create the profile image element
         const profileImage = document.createElement("div");
         profileImage.classList.add("profile");
-        profileImage.innerHTML = '<img src="/admin_assets/images/default_profile.svg" alt="talent profile" />';
+        const img=document.createElement("img");
+        let base64String = arrayBufferToBase64(data.profile_img.data);
+        img.src=`data:image/jpeg;base64,${base64String}`;
+        profileImage.appendChild(img);
 
         // Create the details div with the user data
         const details = document.createElement("div");
@@ -95,7 +98,10 @@ window.onload = function () {
         // Create the profile image element
         const profileImage = document.createElement("div");
         profileImage.classList.add("profile");
-        profileImage.innerHTML = '<img src="/admin_assets/images/default_profile.svg" alt="talent profile" />';
+        const img=document.createElement("img");
+        let base64String = arrayBufferToBase64(data.profile_img.data);
+        img.src=`data:image/jpeg;base64,${base64String}`;
+        profileImage.appendChild(img);
 
         // Create the details div with the user data
         const details = document.createElement("div");
@@ -132,6 +138,17 @@ window.onload = function () {
       console.error("Error fetching data:", error);
     });
 };
+
+// Function to convert byte array to Base64 string
+function arrayBufferToBase64(buffer) {
+  let binary = '';
+  let bytes = new Uint8Array(buffer);
+  let len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
+}
 
 // for opening and closing comfirmation modal for shortlisting talent
 const shortlistConfirmationModal = document.querySelector(".confirmation_modal_shortlist");

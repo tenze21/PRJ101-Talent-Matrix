@@ -19,7 +19,8 @@ function showTalents(talents){
     const imgWrapper=document.createElement("div");
     imgWrapper.classList.add("talent_image");
     const img=document.createElement("img");
-    img.src="/admin_assets/images/_Co-working Life__ by Stocksy Contributor _BONNINSTUDIO _ 1.svg";
+    let base64String = arrayBufferToBase64(talent.profile_img.data);
+    img.src=`data:image/jpeg;base64,${base64String}`;
     imgWrapper.appendChild(img);
     container.appendChild(imgWrapper);
 
@@ -55,6 +56,18 @@ function showTalents(talents){
     wrapper.appendChild(container);
   });
 }
+
+// Function to convert byte array to Base64 string
+function arrayBufferToBase64(buffer) {
+  let binary = '';
+  let bytes = new Uint8Array(buffer);
+  let len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
+}
+
 // Search suggestions logic
 const options = [
   "Machine Learning",

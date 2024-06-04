@@ -82,6 +82,12 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       data = data[0];
 
+      const imgWrapper = document.querySelector(".profile-img");
+      const img = document.createElement("img");
+      let base64String = arrayBufferToBase64(data.profile_img.data);
+      img.src = `data:image/jpeg;base64,${base64String}`;
+      imgWrapper.appendChild(img);
+
       document.getElementById("username").textContent = data.username;
       document.getElementById("fullname").textContent = data.fullname;
       document.getElementById("email").textContent = data.email;
@@ -114,4 +120,15 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => console.error("Error fetching talent:", error));
 
-})
+});
+
+// Function to convert byte array to Base64 string
+function arrayBufferToBase64(buffer) {
+  let binary = "";
+  let bytes = new Uint8Array(buffer);
+  let len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
+}

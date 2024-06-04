@@ -149,7 +149,16 @@ submit.addEventListener("click", (e) => {
   formData.append("education_date_to", document.getElementById("edutill").value);
   // Append other form fields as needed
   formData.append("expertise", skills.toString());
-
+  formData.append("experiences", document.getElementById("experience").value);
+  formData.append("company", document.getElementById("company").value);
+  formData.append("ex_position", document.getElementById("title").value);
+  formData.append("employment_from", document.getElementById("emp_from").value);
+  formData.append("employment_to", document.getElementById("date_to").value);
+  formData.append("facebook", document.getElementById("facebook").value);
+  formData.append("twitter", document.getElementById("twitter").value);
+  formData.append("linkedin", document.getElementById("linkedin").value);
+  
+  
   // Append the image file
   const inputFile = document.getElementById("input-file");
   const file = inputFile.files[0];

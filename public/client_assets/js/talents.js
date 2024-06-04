@@ -214,7 +214,8 @@ function showTalents(talents){
     const imgWrapper=document.createElement("div");
     imgWrapper.classList.add("talent_image");
     const img=document.createElement("img");
-    img.src="/admin_assets/images/_Co-working Life__ by Stocksy Contributor _BONNINSTUDIO _ 1.svg";
+    let base64String = arrayBufferToBase64(talent.profile_img.data);
+    img.src=`data:image/jpeg;base64,${base64String}`;
     imgWrapper.appendChild(img);
     container.appendChild(imgWrapper);
 
