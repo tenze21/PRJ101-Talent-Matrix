@@ -116,7 +116,7 @@ window.onload = function () {
   });
 })();
 
-function updateeImage() {
+function updateImage() {
   const inputFile = document.getElementById("input-file");
   const file = inputFile.files[0];
   if (file) {
